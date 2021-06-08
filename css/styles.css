@@ -159,7 +159,8 @@ header {height:80px; background:#fcf3e9; position:absolute; left:0; top:0; right
 
 .fest-tracks {margin:50px -20px 0 -20px}
 .fest-tracks-inner {display:table; width:100%; border-collapse:separate; border-spacing:20px 0}
-.fest-tracks-item {display:table-cell; vertical-align:top; text-align:center; color:#fff; padding:40px 10px 31px 10px; width:25%}
+.fest-tracks-item {display:table-cell; vertical-align:top; text-align:center; color:#fff; padding:40px 10px 31px 10px; width:25%; text-decoration:none; transition:transform 0.2s, box-shadow 0.2s}
+.fest-tracks-item:hover {color:#fff; text-decoration:none; transform:translateY(-5px); box-shadow:0 0 5px rgba(0, 0, 0, 0.4)}
 .fest-tracks-item-number {font-weight:500; font-size:18px; line-height:23px}
 .fest-tracks-item-title {margin:25px 0 0 0; font-weight:bold; font-size:22px; line-height:29px}
 .fest-tracks-item-text {margin:18px 0 0 0; font-size:16px; line-height:24px}
