@@ -51,8 +51,8 @@ ol ol li::before {content:counter(point)'.'counter(subpoint); counter-increment:
 
 .btn {display:inline-block; vertical-align:top; margin:0; padding:10px 18px 9px 18px; overflow:visible; outline:none; text-decoration:none; background:transparent; color:#000; border:2px solid #000; border-radius:0; font:600 14px/21px Arial, Helvetica, sans-serif; letter-spacing:0.05em; text-transform:uppercase; text-align:center; position:relative; -webkit-appearance:none; cursor:pointer; transition:all 0.2s; box-sizing:border-box}
 .fonts-loaded .btn {font-family:GraphikLCG, sans-serif}
-.btn:hover {color:#fff; background:#000}
-.btn:active {color:#fff; background:#454545; border-color:#454545}
+.btn:hover {color:#fff; background:#f59444; border-color:#f59444}
+.btn:active {color:#fff; background:#f59444; border-color:#f59444}
 .btn span {margin:0 0 0 10px; font-weight:normal}
 .btn svg {display:inline-block; vertical-align:middle; margin:-2px 10px 0 0; fill:none; stroke:#2b2b2b; transition:stroke 0.2s}
 .btn:hover svg {stroke:#fff}
@@ -95,14 +95,19 @@ ol ol li::before {content:counter(point)'.'counter(subpoint); counter-increment:
 
 .wrapper {width:100%; min-width:480px; position:relative; overflow:hidden; padding:80px 0 0 0}
 
-header {height:80px; background:#fffdf9; position:absolute; left:0; top:0; right:0; z-index:20; border-bottom:1px solid #ebebeb}
+header {height:80px; background:#fffdf9; position:fixed; left:0; top:0; right:0; z-index:99; border-bottom:1px solid #ebebeb; transition:height 0.2s, box-shadow 0.2s}
+header.fixed {height:50px; box-shadow:0px 4px 10px rgba(187, 187, 187, 0.25)}
 
-.logo {float:left; margin:20px 0 0 0; position:relative}
-.logo svg {width:92px; height:40px; fill:#fec34f}
+.logo {float:left; margin:20px 0 0 0; position:relative; transition:margin 0.2s}
+.logo svg {width:92px; height:40px; fill:#fec34f; transition:width 0.2s, height 0.2s}
 .logo a {display:block; position:absolute; left:0; top:0; right:0; bottom:0}
+
+header.fixed .logo {margin:12px 0 0 0}
+header.fixed .logo svg {width:58px; height:25px}
 
 .nav {float:right; margin:0 40px 0 0}
 .nav ul {margin:0; padding:0; list-style:none; font-weight:500; font-size:14px; line-height:79px; text-transform:uppercase; display:inline-block; vertical-align:top}
+header.fixed .nav ul {line-height:49px}
 .nav ul li {float:left; margin:0 0 0 23px; padding:0; position:relative}
 .nav ul li:first-child {margin:0}
 .nav ul li::before {display:none}
@@ -115,13 +120,16 @@ header {height:80px; background:#fffdf9; position:absolute; left:0; top:0; right
 .nav ul li a svg {display:inline-block; vertical-align:middle; width:6px; height:5px; margin:-2px 0 0 5px; fill:#2b2b2b; transition:fill 0.2s}
 .nav ul li.active a svg,
 .nav ul li:hover a svg {fill:#fec34f}
-.nav ul li ul {display:none; position:absolute; right:3px; transform:translateX(50%); top:60px; white-space:nowrap; background:#000; border:1px solid #1a1a1a; padding:0 40px 8px 18px; font-weight:normal; font-size:14px; line-height:21px; text-transform:none}
+.nav ul li ul {display:none; position:absolute; right:3px; transform:translateX(50%); top:60px; white-space:nowrap; background:#fffdf9; border:1px solid #ebebeb; padding:0 40px 8px 18px; font-weight:normal; font-size:14px; line-height:21px; text-transform:none}
+header.fixed .nav ul li ul {line-height:21px}
 .nav ul li:hover ul {display:block}
-.nav ul li ul::before {content:""; display:block; position:absolute; left:50%; top:-7px; width:12px; height:12px; border-left:1px solid #1a1a1a; border-top:1px solid #1a1a1a; margin-left:-6px; transform:rotate(45deg); background:#000}
+.nav ul li ul::before {content:""; display:block; position:absolute; left:50%; top:-7px; width:12px; height:12px; border-left:1px solid #ebebeb; border-top:1px solid #ebebeb; margin-left:-6px; transform:rotate(45deg); background:#fffdf9}
 .nav ul li ul li {float:none; margin:10px 0 0 0}
 .nav ul li ul li:first-child {margin:10px 0 0 0}
-.nav ul li ul li a {display:inline; color:#fff; position:relative}
-.nav ul li ul li a:hover {color:#fff}
+.nav ul li:hover ul li a,
+.nav ul li ul li a {display:inline; color:#2b2b2b; position:relative}
+.nav ul li:hover ul li a:hover,
+.nav ul li ul li a:hover {color:#fec34f}
 .nav ul li ul li a::before {content:""; display:block; position:absolute; left:0; bottom:-2px; right:0; height:1px; background:#d6d6d6; transform:scale(0, 1); transform-origin:left center; transition:all 0.2s}
 .nav ul li ul li.active a::before,
 .nav ul li ul li a:hover::before {transform:scale(1, 1)}
@@ -131,7 +139,9 @@ header {height:80px; background:#fffdf9; position:absolute; left:0; top:0; right
     .nav {display:none; margin:0; text-align:left}
     .mobile-menu-open .nav {display:block; position:fixed; z-index:990; left:0; top:0; right:0; bottom:0; background:rgba(0, 0, 0, 0.4)}
     .nav-inner {position:absolute; left:135px; top:80px; right:0; bottom:0; overflow:auto; background:#fff; padding:0 20px}
+    header.fixed .nav-inner {top:50px}
     .nav ul {font-size:20px; line-height:30px; display:block}
+    header.fixed .nav ul {line-height:30px}
     .nav ul li {float:none; margin:0; border-top:1px solid #e8e8e8}
     .nav ul li a {color:#1e1e1e; padding:20px 0; position:relative}
     .nav ul li:hover a {color:#1e1e1e}
@@ -142,6 +152,7 @@ header {height:80px; background:#fffdf9; position:absolute; left:0; top:0; right
     .nav ul li.nav-fest {margin:0 -20px; border-top:none}
     .nav ul li.nav-fest a {padding:20px; background:#000; font-weight:600; font-size:24px; line-height:36px}
     .nav ul li ul {position:relative; right:auto; transform:none; top:auto; white-space:normal; background:none; border:none; padding:0 0 30px 0; font-weight:500; font-size:18px; line-height:27px; text-transform:uppercase}
+    header.fixed .nav ul li ul {line-height:27px}
     .nav ul li:hover ul {display:none}
     .nav ul li.open ul {display:block}
     .nav ul li ul::before {display:none}
@@ -161,6 +172,7 @@ header {height:80px; background:#fffdf9; position:absolute; left:0; top:0; right
 
 @media screen and (max-width:1199px) {
     .mobile-menu-open .header-right {float:none; position:fixed; left:135px; top:0; right:0; height:79px; background:#fff; z-index:991}
+    .mobile-menu-open header.fixed .header-right {height:49px}
 }
 
 @media screen and (max-width:479px) {
@@ -171,8 +183,10 @@ header {height:80px; background:#fffdf9; position:absolute; left:0; top:0; right
 
 @media screen and (max-width:1199px) {
     .mobile-menu-link {display:block; float:right; margin:0 -20px 0 8px; width:80px; height:79px; position:relative; overflow:hidden}
+    header.fixed .mobile-menu-link {height:49px}
     .mobile-menu-open .mobile-menu-link {margin:0 0 0 8px}
     .mobile-menu-link svg:nth-child(1) {display:block; fill:none; stroke:#000; width:30px; height:23px; margin:28px auto 0 auto}
+    header.fixed .mobile-menu-link svg:nth-child(1) {margin-top:13px}
     .mobile-menu-link svg:nth-child(2) {display:none}
     .mobile-menu-open .mobile-menu-link svg:nth-child(1) {display:none}
     .mobile-menu-open .mobile-menu-link svg:nth-child(2) {display:block; fill:none; stroke:#000; width:24px; height:23px; position:absolute; left:50%; top:50%; margin:-12px 0 0 -12px}
@@ -184,8 +198,11 @@ header {height:80px; background:#fffdf9; position:absolute; left:0; top:0; right
 .header-lang {float:right; margin:23px 0 0 0; width:33px; height:33px; background:#fec34f; text-decoration:none; font-weight:500; font-size:14px; line-height:35px; text-align:center; border-radius:50%; color:#fff}
 .header-lang:hover {color:#fff}
 
+header.fixed .header-lang {margin:8px 0 0 0}
+
 @media screen and (max-width:1199px) {
     .header-lang {width:40px; height:40px; line-height:42px; margin:20px 0 0 0; font-size:18px; background:#000}
+    header.fixed .header-lang {margin:5px 0 0 0}
 }
 
 .fest-welcome {background:url(../images/fest-welcome.svg) no-repeat center top}
@@ -435,12 +452,13 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 .program-day-header::after {content:""; display:block; clear:both}
 .program-day-title {float:left; font-weight:bold; font-size:36px; line-height:36px; color:#000}
 .program-day-notice {float:right; margin:8px 0 0 0; font-size:16px; line-height:21px; color:#000}
-.program-day-content {margin:58px 0 0 0}
+.program-day-content {margin:40px 0 0 0}
 .program-day-group {margin:52px 0 0 0}
+.program-day-group:first-child {margin:0}
 .program-day-group-title a {display:block; position:relative; background:#5087c7; color:#fff; font-weight:bold; font-size:22px; line-height:29px; padding:15px 30px; text-decoration:none}
 .program-day-group-title a svg {display:block; width:24px; height:24px; position:absolute; right:14px; top:50%; margin-top:-12px; fill:#fff; transition:transform 0.2s}
 .program-day-group.open .program-day-group-title a svg {transform:rotate(-180deg)}
-.program-day-group-list {display:none; font-size:0; line-height:0; letter-spacing:-1px; margin:20px -10px 0 -10px}
+.program-day-group-list {display:block; font-size:0; line-height:0; letter-spacing:-1px; margin:20px -10px 0 -10px}
 .program-day-item {display:inline-block; vertical-align:top; width:33.33%; padding:60px 10px 0 10px}
 .program-day-item:nth-child(1),
 .program-day-item:nth-child(2),
@@ -472,15 +490,15 @@ a.partners-group-global-logo-inner:hover {top:-5px}
     .program-day-item-title {margin:10px 0 0 0; font-size:20px; line-height:26px}
 }
 
-.back-link {margin:0 -999px; padding:0 999px; background:#fffaf3; height:60px; font-size:16px; line-height:60px}
-.back-link a {display:inline-block; vertical-align:top; height:60px; position:relative; padding:0 0 0 24px; color:#242424; text-decoration:none}
-.back-link a:hover {color:#fec350}
-.back-link a svg {display:block; position:absolute; left:0; top:50%; width:17px; height:18px; margin-top:-9px; fill:#5784cc}
+.back-link {font-size:16px; line-height:60px}
+.back-link a {display:block; margin:0 -999px; padding:0 999px 0 1023px; background:#fffaf3; height:60px; position:relative; color:#242424; text-decoration:none; transition:color 0.2s, background 0.2s}
+.back-link a:hover {background:#ffedc9}
+.back-link a svg {display:block; position:absolute; left:999px; top:50%; width:17px; height:18px; margin-top:-9px; fill:#fec34f}
 
 @media screen and (max-width:1199px) {
-    .back-link {margin:0 -20px; padding:0 20px 0 35px; height:50px; font-size:14px; line-height:50px; text-transform:uppercase; letter-spacing:0.05em; font-weight:500}
-    .back-link a {height:50px; color:#686868}
-    .back-link a svg {width:13px; height:13px; margin-top:-7px}
+    .back-link {font-size:14px; line-height:50px; text-transform:uppercase; letter-spacing:0.05em; font-weight:500}
+    .back-link a {margin:0 -20px; padding:0 20px 0 35px; height:50px; color:#686868}
+    .back-link a svg {left:20px; width:13px; height:13px; margin-top:-7px}
 }
 
 .program-card {margin:63px 0 0 0; position:relative}
@@ -502,8 +520,8 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 .program-card-container h2 {margin:18px 0 0 0; font-weight:500}
 .program-card-btn {margin:20px 0 0 0}
 .program-card-btn .btn {border-color:#f59444; color:#f59444}
-.program-card-btn .btn:hover {color:#fff; background:#000; border-color:#000}
-.program-card-btn .btn:active {color:#fff; background:#454545; border-color:#454545}
+.program-card-btn .btn:hover {color:#fff; background:#f59444; border-color:#f59444}
+.program-card-btn .btn:active {color:#fff; background:#454545; border-color:#f59444}
 .program-card-text {margin:50px 0 0 0}
 .program-card-text p {margin:10px 0}
 .program-card-text *:first-child {margin-top:0}
@@ -533,6 +551,9 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 .program-card-speakers .speaker {width:50%}
 .program-card-speakers .speaker-name {font-weight:500; font-size:16px; line-height:21px; margin:12px 0 0 0}
 .program-card-speakers .speaker-text {display:none}
+.program-card-speakers .speaker-inner {transition:transform 0.2s}
+.program-card-speakers .speaker-inner:hover {transform:translateY(-5px); color:#fec350}
+.program-card-speakers .speaker-inner:hover .speaker-detail {display:none}
 
 @media screen and (max-width:1199px) {
     .program-card-speakers .speakers {margin:25px -10px -40px -10px}
@@ -561,7 +582,10 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 .speaker-card-session {border-top:1px solid #e9e9e9; padding:20px 0}
 .speaker-card-session-date {font-size:16px; line-height:24px; color:#000; font-weight:300}
 .speaker-card-session-date span {font-weight:500; margin:0 5px 0 0}
+.speaker-card-session-date a {text-decoration:none; display:inline-block; vertical-align:middle; font-style:normal; font-size:14px; line-height:18px; padding:3px 6px; color:#414141; font-weight:normal; background:#eaeaea; margin:-2px 0 0 5px}
+.speaker-card-session-date a:hover {opacity:0.8}
 .speaker-card-session-title {margin:3px 0 0 0; color:#000}
+.speaker-card-session-title a {text-decoration:none}
 
 @media screen and (max-width:1199px) {
     .speaker-card {margin:40px 0 0 0}
@@ -663,10 +687,27 @@ a.partners-group-global-logo-inner:hover {top:-5px}
     .travels-item-title {margin:10px 0 0 0; font-size:20px; line-height:26px}
 }
 
+.prefooter {margin:60px 0 0 0; border-top:1px solid #e7e7e7; padding:15px 0; font-size:14px; line-height:21px}
+
+@media screen and (max-width:1199px) {
+    .prefooter {display:none}
+}
+
+.breadcrumbs {float:left; max-width:calc(100% - 150px)}
+.breadcrumbs span {color:#a5a5a5}
+.breadcrumbs a {color:#a5a5a5; text-decoration:none}
+.breadcrumbs a:hover {color:#fec34f}
+
+.sitemap-link {float:right}
+.sitemap-link a {color:#504f4f; text-decoration:none}
+.sitemap-link a:hover {color:#fec34f}
+
 footer {margin:100px 0 0 0}
+.prefooter+footer {margin:0}
 
 @media screen and (max-width:1199px) {
     footer {margin:78px 0 0 0}
+    .prefooter+footer {margin:78px 0 0 0}
 }
 
 .footer-social {background:#fcf4e9; text-align:center; font-size:0; line-height:0; letter-spacing:-1px}
@@ -750,4 +791,13 @@ footer {margin:100px 0 0 0}
     .footer-bottom {padding:20px 0 14px 0; text-align:center}
     .copyrights {float:none; font-size:18px; line-height:27px}
     .policy {float:none; margin:7px 0 0 0; font-size:18px; line-height:27px; padding:0}
+}
+
+.up-link {display:block; opacity:0; visibility:hidden; position:fixed; z-index:90; right:68px; bottom:40px; width:48px; height:48px; border:2px solid #ebebeb; border-radius:50%; background:#fffdf9; box-shadow:4px 4px 30px rgba(0, 0, 0, 0.15); transition:opacity 0.2s, background-color 0.2s, border-color 0.2s}
+.up-link.visible {opacity:1; visibility:visible}
+.up-link:hover {background:#fec34f}
+.up-link svg {display:block; position:absolute; left:50%; top:50%; margin:-5px 0 0 -8px; width:16px; height:9px; fill:none; stroke:#000}
+
+@media screen and (max-width:1199px) {
+    .up-link {right:20px; bottom:20px; width:44px; height:44px}
 }

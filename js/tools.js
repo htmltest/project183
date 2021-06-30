@@ -121,6 +121,8 @@ $(document).ready(function() {
         curGroup.find('.program-day-group-list').slideToggle();
         e.preventDefault();
     });
+    
+    $('.program-day-group:not(.open)').find('.program-day-group-list').hide();
 
     $('.program-days-menu-current').click(function() {
         if ($('.program-days-menu').hasClass('open')) {
@@ -170,6 +172,11 @@ $(document).ready(function() {
         }
     });
 
+    $('.up-link').click(function(e) {
+        $('html, body').animate({'scrollTop': 0});
+        e.preventDefault();
+    });
+
 });
 
 $(window).on('load resize', function() {
@@ -180,4 +187,33 @@ $(window).on('load resize', function() {
             curBlock.addClass('with-more');
         }
     });
+});
+
+$(window).on('load resize scroll', function() {
+    var windowScroll = $(window).scrollTop();
+    $('body').append('<div id="body-test-height" style="position:fixed; left:0; top:0; right:0; bottom:0; z-index:-1"></div>');
+    var windowHeight = $('#body-test-height').height();
+    $('#body-test-height').remove();
+
+    if ($('.up-link').length == 1) {
+        if (windowScroll > windowHeight) {
+            $('.up-link').addClass('visible');
+        } else {
+            $('.up-link').removeClass('visible');
+        }
+
+        if (windowScroll + windowHeight > $('footer').offset().top) {
+            var bottomDiff = 30;
+            $('.up-link').css({'margin-bottom': (windowScroll + windowHeight) - $('footer').offset().top + bottomDiff});
+        } else {
+            $('.up-link').css({'margin-bottom': 0});
+        }
+    }
+    
+    if (windowScroll > 0) {
+        $('header').addClass('fixed');
+    } else {
+        $('header').removeClass('fixed');
+    }
+
 });
