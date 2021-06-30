@@ -54,4 +54,130 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    $('.main-block .partners').each(function() {
+        var curBlock = $(this).parent();
+        var curSize = 6;
+        if ($(window).width() < 1200) {
+            curSize = 2;
+        }
+        if (curBlock.find('.partners-group-item').length > curSize) {
+            curBlock.find('.partners-more').addClass('visible');
+        } else {
+            curBlock.find('.partners-more-all').addClass('visible');
+        }
+    });
+
+    $('.partners-more a').click(function(e) {
+        var curBlock = $(this).parents().filter('.main-block');
+        var countItems = curBlock.find('.partners-group-item').length;
+        var countVisible = curBlock.find('.partners-group-item:visible').length;
+        var curSize = 6;
+        if ($(window).width() < 1200) {
+            curSize = 2;
+        }
+        countVisible += curSize;
+        if (countVisible >= countItems) {
+            curBlock.find('.partners-more').removeClass('visible');
+            curBlock.find('.partners-more-all').addClass('visible');
+        }
+        curBlock.find('.partners-group-item:lt(' + countVisible + ')').addClass('visible');
+        e.preventDefault();
+    });
+
+    $('.nav ul li').each(function(e) {
+        var curLi = $(this);
+        if (curLi.find('ul').length != 0) {
+            curLi.find('ul').prepend('<li class="nav-mobile-parent"><a href="' + curLi.find('> a').attr('href') + '">' + curLi.find('> a span').html() + '</a></li>');
+        }
+    });
+
+    $('.nav ul li a').click(function(e) {
+        if ($(window).width() < 1200) {
+            if ($(this).parent().find('ul').length != 0) {
+                $(this).parent().toggleClass('open');
+                e.preventDefault();
+            }
+        }
+    });
+
+    $('.program-days-menu-item').click(function(e) {
+        var curItem = $(this);
+        if (!curItem.hasClass('active')) {
+            $('.program-days-menu-item.active').removeClass('active');
+            curItem.addClass('active');
+            var curIndex = $('.program-days-menu-item').index(curItem);
+            $('.program-day.active').removeClass('active');
+            $('.program-day').eq(curIndex).addClass('active');
+
+            $('.program-days-menu-current span').html(curItem.find('.fest-tracks-item-title').html());
+            $('.program-days-menu').removeClass('open')
+        }
+        e.preventDefault();
+    });
+
+    $('.program-day-group-title a').click(function(e) {
+        var curGroup = $(this).parents().filter('.program-day-group');
+        curGroup.toggleClass('open');
+        curGroup.find('.program-day-group-list').slideToggle();
+        e.preventDefault();
+    });
+
+    $('.program-days-menu-current').click(function() {
+        if ($('.program-days-menu').hasClass('open')) {
+            $('.program-days-menu').removeClass('open');
+        } else {
+            $('.program-days-menu').addClass('open');
+        }
+    });
+
+    $(document).click(function(e) {
+        if ($(e.target).parents().filter('.program-days-menu').length == 0) {
+            $('.program-days-menu').removeClass('open');
+        }
+    });
+
+    $('body').on('click', '.speaker-card-descr-more a', function(e) {
+        $(this).parent().prev().toggleClass('open');
+        e.preventDefault();
+    });
+
+    $('.travels-menu ul li a').click(function(e) {
+        var curItem = $(this).parent();
+        if (!curItem.hasClass('active')) {
+            $('.travels-menu ul li.active').removeClass('active');
+            curItem.addClass('active');
+            var curIndex = $('.travels-menu ul li').index(curItem);
+            $('.travels-day.active').removeClass('active');
+            $('.travels-day').eq(curIndex).addClass('active');
+
+            $('.travels-menu-current span').html(curItem.find('a').html());
+            $('.travels-menu').removeClass('open')
+        }
+        e.preventDefault();
+    });
+
+    $('.travels-menu-current').click(function() {
+        if ($('.travels-menu').hasClass('open')) {
+            $('.travels-menu').removeClass('open');
+        } else {
+            $('.travels-menu').addClass('open');
+        }
+    });
+
+    $(document).click(function(e) {
+        if ($(e.target).parents().filter('.travels-menu').length == 0) {
+            $('.travels-menu').removeClass('open');
+        }
+    });
+
+});
+
+$(window).on('load resize', function() {
+    $('.speaker-card-descr-text').each(function() {
+        var curBlock = $(this);
+        curBlock.removeClass('open with-more');
+        if (curBlock.height() < curBlock.find('.speaker-card-descr-text-inner').height()) {
+            curBlock.addClass('with-more');
+        }
+    });
 });
