@@ -561,9 +561,11 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 }
 
 .program-card-partners {margin:60px 0 0 0}
+.program-card-partners:first-child {margin:0}
 
 @media screen and (max-width:1199px) {
     .program-card-partners {margin:80px 0 0 0}
+    .program-card-partners:first-child {margin:0}
 }
 
 .program-card-partners .partners {margin:20px 0 0 0}
@@ -800,4 +802,43 @@ footer {margin:100px 0 0 0}
 
 @media screen and (max-width:1199px) {
     .up-link {right:20px; bottom:20px; width:44px; height:44px}
+}
+
+.sitemap {margin:67px 0 0 0}
+.sitemap ul {margin:0; padding:0; list-style:none; font-weight:500; column-count:3}
+.sitemap ul li {margin:0 0 10px 0; padding:0; overflow:hidden; -webkit-column-break-inside:avoid; page-break-inside:avoid; break-inside:avoid; break-inside:avoid-column}
+.sitemap ul li::before {display:none}
+.sitemap ul li a {color:#232323; text-decoration:none}
+.sitemap ul li a svg {display:inline-block; width:18px; height:18px; vertical-align:middle; margin:-2px 0 0 10px; stroke:#848484; fill:none; transition:all 0.2s}
+.sitemap ul li a:hover {color:#ff2f66}
+.sitemap ul li a:hover svg {stroke:#ff2f66}
+.sitemap ul li ul {margin:10px 0 20px 0; font-weight:normal; column-count:1}
+.sitemap ul li ul li {position:relative; padding:0 0 0 30px}
+.sitemap ul li ul li::after {content:""; display:block; position:absolute; left:0; top:13px; width:20px; height:1px; background:#c4c4c4}
+.sitemap ul li ul li a {color:#504f4f}
+.sitemap ul li ul li a:hover {color:#ff2f66}
+
+@media screen and (max-width:1199px) {
+    .sitemap {margin:40px 0 0 0}
+    .sitemap ul {column-count:2}
+    .sitemap ul li ul {column-count:1}
+}
+
+@media screen and (max-width:479px) {
+    .sitemap ul {column-count:1}
+}
+
+.page-404 {text-align:center; border-bottom:1px solid #eaeaea; padding:80px 0 117px 0}
+.page-404::before {content:""; display:block; width:96px; height:82px; margin:0 auto; background:url(../images/page-404.svg) no-repeat; background-size:100%}
+.page-404 h1 {margin:62px 0 0 0; font-size:60px; line-height:60px}
+.page-404 h2 {margin:10px 0 0 0; font-weight:500}
+.page-404-btn {margin:30px 0 0 0}
+.page-404+.sitemap {margin:60px 0 0 0}
+
+@media screen and (max-width:1199px) {
+    .page-404 {padding:70px 0 80px 0}
+    .page-404::before {width:133px; height:113px}
+    .page-404 h1 {margin:52px 0 0 0; font-size:80px; line-height:80px}
+    .page-404 h2 {margin:20px 0 0 0}
+    .page-404-btn {margin:40px 0 0 0}
 }
