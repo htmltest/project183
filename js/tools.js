@@ -121,7 +121,7 @@ $(document).ready(function() {
         curGroup.find('.program-day-group-list').slideToggle();
         e.preventDefault();
     });
-    
+
     $('.program-day-group:not(.open)').find('.program-day-group-list').hide();
 
     $('.program-days-menu-current').click(function() {
@@ -177,6 +177,352 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    function popupCenter(url, title) {
+        var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
+        var dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
+        var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+        var left = ((width / 2) - (480 / 2)) + dualScreenLeft;
+        var top = ((height / 3) - (360 / 3)) + dualScreenTop;
+        var newWindow = window.open(url, title, 'scrollbars=yes, width=' + 480 + ', height=' + 360 + ', top=' + top + ', left=' + left);
+        if (window.focus) {
+            newWindow.focus();
+        }
+    }
+
+    $('body').on('click', '.window-photo-social-item-fb', function(e) {
+        var curTitle = encodeURIComponent($('title').html());
+        var curUrl = encodeURIComponent(window.location.href);
+
+        popupCenter('https://www.facebook.com/sharer/sharer.php?u=' + curUrl, curTitle);
+
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.window-photo-social-item-vk', function(e) {
+        var curTitle = encodeURIComponent($('title').html());
+        var curUrl = encodeURIComponent(window.location.href);
+
+        popupCenter('https://vk.com/share.php?url=' + curUrl + '&description=' + curTitle, curTitle);
+
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.window-photo-social-item-link', function(e) {
+        e.preventDefault();
+    });
+
+    var clipboardPhoto = new ClipboardJS('.window-photo-social-item-link')
+    clipboardPhoto.on('success', function(e) {
+        alert('OK');
+    });
+
+    $('body').on('click', '.photo-gallery-item-inner a', function(e) {
+        var curLink = $(this);
+        var curItem = curLink.parents().filter('.photo-gallery-item');
+        var curGallery = curItem.parents().filter('.photo-gallery');
+        var curIndex = curGallery.find('.photo-gallery-item').index(curItem);
+
+        var curPadding = $('.wrapper').width();
+        var curScroll = $(window).scrollTop();
+        $('html').addClass('window-photo-open');
+        curPadding = $('.wrapper').width() - curPadding;
+        $('body').css({'margin-right': curPadding + 'px'});
+
+        var windowHTML =    '<div class="window-photo">';
+
+        windowHTML +=           '<div class="window-photo-preview">' +
+                                    '<div class="window-photo-preview-inner">' +
+                                        '<div class="window-photo-preview-list">';
+
+        var galleryLength = curGallery.find('.photo-gallery-item-inner').length;
+        for (var i = 0; i < galleryLength; i++) {
+            var curTitle = '';
+            var curGalleryItem = curGallery.find('.photo-gallery-item-inner').eq(i);
+            windowHTML +=                   '<div class="window-photo-preview-list-item"><a href="#"><img src="' + curGalleryItem.find('img').attr('src') + '" alt="" /></a></div>';
+        }
+        windowHTML +=                   '</div>' +
+                                    '</div>' +
+                                '</div>';
+
+        windowHTML +=           '<a href="#" class="window-photo-close"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-close"></use></svg></a>';
+        windowHTML +=           '<a href="#" class="window-photo-download" target="_blank" download><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-download"></use></svg></a>';
+        windowHTML +=           '<div class="window-photo-social">';
+        windowHTML +=               '<div class="window-photo-social-icon"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share"></use></svg></div>';
+        windowHTML +=               '<div class="window-photo-social-window">';
+        windowHTML +=                   '<a href="#" class="window-photo-social-item window-photo-social-item-link"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-link"></use></svg></a>';
+        windowHTML +=                   '<a href="#" class="window-photo-social-item window-photo-social-item-fb"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-fb"></use></svg></a>';
+        windowHTML +=                   '<a href="#" class="window-photo-social-item window-photo-social-item-vk"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-vk"></use></svg></a>';
+        windowHTML +=               '</div>';
+        windowHTML +=           '</div>';
+
+        windowHTML +=           '<div class="window-photo-slider">' +
+                                    '<div class="window-photo-slider-list">';
+
+        for (var i = 0; i < galleryLength; i++) {
+            var curGalleryItem = curGallery.find('.photo-gallery-item').eq(i);
+            windowHTML +=               '<div class="window-photo-slider-list-item">' +
+                                            '<div class="window-photo-slider-list-item-inner"><img src="' + pathTemplate + 'images/loading.gif" data-src="' + curGalleryItem.find('.photo-gallery-item-inner a').attr('href') + '" alt="" /></div>' +
+                                        '</div>';
+        }
+        windowHTML +=               '</div>' +
+                                '</div>';
+
+        windowHTML +=       '</div>';
+
+        $('.window-photo').remove();
+        $('body').append(windowHTML);
+
+        $('.wrapper').css({'top': -curScroll});
+        $('.wrapper').data('curScroll', curScroll);
+
+        $('.window-photo').each(function() {
+            var marginPhoto = 166;
+            if ($(window).width() < 1200) {
+                marginPhoto = 253;
+            }
+            var newHeight = marginPhoto;
+            $('.window-photo-slider-list-item-inner').css({'height': 'calc(100vh - ' + newHeight + 'px)', 'line-height': 'calc(100vh - ' + newHeight + 'px)'});
+        });
+
+        if ($(window).width() > 1199) {
+            $('.window-photo-preview-inner').mCustomScrollbar({
+                axis: 'y',
+                scrollButtons: {
+                    enable: true
+                }
+            });
+        } else {
+            $('.window-photo-preview-inner').mCustomScrollbar({
+                axis: 'x',
+                scrollButtons: {
+                    enable: true
+                }
+            });
+        }
+
+        $('.window-photo-slider-list').slick({
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            prevArrow: '<button type="button" class="slick-prev"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#gallery-prev"></use></svg></button>',
+            nextArrow: '<button type="button" class="slick-next"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#gallery-next"></use></svg></button>',
+            dots: false,
+            speed: 250,
+            initialSlide: curIndex,
+            responsive: [
+                {
+                    breakpoint: 1199,
+                    settings: {
+                        arrows: false
+                    }
+                }
+            ]
+        }).on('setPosition', function(event, slick) {
+            var currentSlide = $('.window-photo-slider-list').slick('slickCurrentSlide');
+            $('.window-photo-preview-list-item.active').removeClass('active');
+            $('.window-photo-preview-list-item').eq(currentSlide).addClass('active');
+            $('.window-photo-preview-inner').mCustomScrollbar('scrollTo', $('.window-photo-preview-list-item').eq(currentSlide));
+            $('.window-photo-download').attr('href', $('.window-photo-slider-list-item').eq(currentSlide).find('img').attr('data-src'));
+            $('.window-photo-social-item-link').attr('data-clipboard-text', $('.window-photo-slider-list-item').eq(currentSlide).find('img').attr('data-src'));
+            var curIMG = $('.window-photo-slider-list-item').eq(currentSlide).find('img');
+            if (curIMG.attr('src') !== curIMG.attr('data-src')) {
+                var newIMG = $('<img src="" alt="" style="position:fixed; left:-9999px; top:-9999px" />');
+                $('body').append(newIMG);
+                newIMG.one('load', function(e) {
+                    curIMG.attr('src', curIMG.attr('data-src'));
+                    newIMG.remove();
+                });
+                newIMG.attr('src', curIMG.attr('data-src'));
+                window.setTimeout(function() {
+                    curIMG.attr('src', curIMG.attr('data-src'));
+                    if (newIMG) {
+                        newIMG.remove();
+                    }
+                }, 3000);
+            }
+        });
+
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.window-photo-preview-list-item a', function(e) {
+        var curIndex = $('.window-photo-preview-list-item').index($(this).parent());
+        $('.window-photo-slider-list').slick('slickGoTo', curIndex);
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.window-photo-close', function(e) {
+        $('.window-photo').remove();
+        $('html').removeClass('window-photo-open');
+        $('body').css({'margin-right': 0});
+        $('.wrapper').css({'top': 0});
+        $(window).scrollTop($('.wrapper').data('curScroll'));
+        e.preventDefault();
+    });
+
+    $('body').on('keyup', function(e) {
+        if (e.keyCode == 27) {
+            if ($('.window-photo').length > 0) {
+                $('.window-photo-close').trigger('click');
+            }
+        }
+    });
+
+    $('body').on('click', '.window-video-social-item-fb', function(e) {
+        var curTitle = encodeURIComponent($('title').html());
+        var curUrl = encodeURIComponent(window.location.href);
+
+        popupCenter('https://www.facebook.com/sharer/sharer.php?u=' + curUrl, curTitle);
+
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.window-video-social-item-vk', function(e) {
+        var curTitle = encodeURIComponent($('title').html());
+        var curUrl = encodeURIComponent(window.location.href);
+
+        popupCenter('https://vk.com/share.php?url=' + curUrl + '&description=' + curTitle, curTitle);
+
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.window-video-social-item-link', function(e) {
+        e.preventDefault();
+    });
+
+    var clipboardVideo = new ClipboardJS('.window-video-social-item-link')
+    clipboardVideo.on('success', function(e) {
+        alert('OK');
+    });
+
+    $('body').on('click', '.video-gallery-item a', function(e) {
+        var curLink = $(this);
+        var curItem = curLink.parents().filter('.video-gallery-item');
+        var curGallery = curItem.parents().filter('.video-gallery');
+        if (curGallery.length == 0 || curItem.parents().filter('.main-block').length == 1) {
+            curGallery = curItem.parents().filter('.main-block');
+        }
+        var curIndex = curGallery.find('.video-gallery-item').index(curItem);
+
+        var curPadding = $('.wrapper').width();
+        var curScroll = $(window).scrollTop();
+        $('html').addClass('window-video-open');
+        curPadding = $('.wrapper').width() - curPadding;
+        $('body').css({'margin-right': curPadding + 'px'});
+
+        var windowHTML =    '<div class="window-video">';
+
+        windowHTML +=           '<a href="#" class="window-video-close"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-close"></use></svg></a>';
+        windowHTML +=           '<div class="window-video-social">';
+        windowHTML +=               '<div class="window-video-social-icon"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share"></use></svg></div>';
+        windowHTML +=               '<div class="window-video-social-window">';
+        windowHTML +=                   '<a href="#" class="window-video-social-item window-video-social-item-link"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-link"></use></svg></a>';
+        windowHTML +=                   '<a href="#" class="window-video-social-item window-video-social-item-fb"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-fb"></use></svg></a>';
+        windowHTML +=                   '<a href="#" class="window-video-social-item window-video-social-item-vk"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-vk"></use></svg></a>';
+        windowHTML +=               '</div>';
+        windowHTML +=           '</div>';
+
+        windowHTML +=           '<div class="window-video-slider">' +
+                                    '<div class="window-video-slider-list">';
+
+        var galleryLength = curGallery.find('.video-gallery-item').length;
+        for (var i = 0; i < galleryLength; i++) {
+            var curGalleryItem = curGallery.find('.video-gallery-item').eq(i);
+            windowHTML +=               '<div class="window-video-slider-list-item">' +
+                                            '<div class="window-video-slider-list-item-inner" data-videourl="' + curGalleryItem.find('a').attr('href') + '"></div>' +
+                                        '</div>';
+        }
+        windowHTML +=               '</div>' +
+                                '</div>';
+
+        windowHTML +=       '</div>';
+
+        $('.window-video').remove();
+        $('body').append(windowHTML);
+
+        $('.wrapper').css({'top': -curScroll});
+        $('.wrapper').data('curScroll', curScroll);
+
+        $('.window-video-slider-list').slick({
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            prevArrow: '<button type="button" class="slick-prev"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#gallery-prev"></use></svg></button>',
+            nextArrow: '<button type="button" class="slick-next"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#gallery-next"></use></svg></button>',
+            dots: false,
+            speed: 250,
+            initialSlide: curIndex,
+            responsive: [
+                {
+                    breakpoint: 1199,
+                    settings: {
+                        arrows: false
+                    }
+                }
+            ]
+        }).on('setPosition', function(event, slick) {
+            var currentSlide = $('.window-video-slider-list').slick('slickCurrentSlide');
+            $('.window-video-slider-list-item-inner').html('');
+            $('.window-video-social-item-link').attr('data-clipboard-text', $('.window-video-slider-list-item').eq(currentSlide).find('.window-video-slider-list-item-inner').attr('data-videourl'));
+            $('.window-video-slider-list-item').eq(currentSlide).find('.window-video-slider-list-item-inner').each(function() {
+                $(this).html('<iframe width="560" height="315" src="' + $(this).attr('data-videourl') + '?rel=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+            });
+        });
+
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.window-video-close', function(e) {
+        $('.window-video').remove();
+        $('html').removeClass('window-video-open');
+        $('body').css({'margin-right': 0});
+        $('.wrapper').css({'top': 0});
+        $(window).scrollTop($('.wrapper').data('curScroll'));
+        e.preventDefault();
+    });
+
+    $('body').on('keyup', function(e) {
+        if (e.keyCode == 27) {
+            if ($('.window-video').length > 0) {
+                $('.window-video-close').trigger('click');
+            }
+        }
+    });
+
+    var $grid = $('.photo-gallery').masonry({
+        itemSelector: '.photo-gallery-item'
+    });
+    $('.photo-gallery img').one('load', function() {
+         $grid.masonry('layout');
+    });
+
+    $('.photo-gallery-more a').click(function(e) {
+        var curBlock = $(this).parents().filter('.main-block');
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('href'),
+            dataType: 'html',
+            cache: false
+        }).done(function(html) {
+            curBlock.find('.photo-gallery').append();
+            $(html).find('.photo-gallery-item').each(function() {
+                var elem = $(this);
+                $grid.masonry().append(elem).masonry('appended', elem).masonry();
+                curBlock.find('.photo-gallery img').one('load', function() {
+                     $grid.masonry('layout');
+                });
+            });
+            if ($(html).find('.photo-gallery-more').length == 1) {
+                curBlock.find('.photo-gallery-more a').attr('href', $(html).find('.photo-gallery-more a').attr('href'));
+            } else {
+                curBlock.find('.photo-gallery-more').remove();
+            }
+        });
+        $('.photos-more').remove();
+        e.preventDefault();
+    });
+
 });
 
 $(window).on('load resize', function() {
@@ -209,7 +555,7 @@ $(window).on('load resize scroll', function() {
             $('.up-link').css({'margin-bottom': 0});
         }
     }
-    
+
     if (windowScroll > 0) {
         $('header').addClass('fixed');
     } else {
