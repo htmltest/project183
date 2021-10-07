@@ -530,34 +530,111 @@ $(document).ready(function() {
         });
         e.preventDefault();
     });
-/*
-    $('.photo-gallery-more a').click(function(e) {
-        var curBlock = $(this).parents().filter('.main-block');
-        $.ajax({
-            type: 'POST',
-            url: $(this).attr('href'),
-            dataType: 'html',
-            cache: false
-        }).done(function(html) {
-            curBlock.find('.photo-gallery').append();
-            $(html).find('.photo-gallery-item').each(function() {
-                var elem = $(this);
-                $grid.masonry().append(elem).masonry('appended', elem).masonry();
-                curBlock.find('.photo-gallery img').one('load', function() {
-                     $grid.masonry('layout');
-                });
-            });
-            if ($(html).find('.photo-gallery-more').length == 1) {
-                curBlock.find('.photo-gallery-more a').attr('href', $(html).find('.photo-gallery-more a').attr('href'));
-            } else {
-                curBlock.find('.photo-gallery-more').remove();
-            }
-        });
-        $('.photos-more').remove();
+
+    $('body').on('click', '.window-title-social-item-fb', function(e) {
+        var curTitle = encodeURIComponent($('title').html());
+        var curUrl = encodeURIComponent(window.location.href);
+
+        popupCenter('https://www.facebook.com/sharer/sharer.php?u=' + curUrl, curTitle);
+
         e.preventDefault();
-    });*/
+    });
+
+    $('body').on('click', '.window-title-social-item-vk', function(e) {
+        var curTitle = encodeURIComponent($('title').html());
+        var curUrl = encodeURIComponent(window.location.href);
+
+        popupCenter('https://vk.com/share.php?url=' + curUrl + '&description=' + curTitle, curTitle);
+
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.window-title-social-item-link', function(e) {
+        e.preventDefault();
+    });
+
+    var clipboardWindow = new ClipboardJS('.window-title-social-item-link')
+    clipboardWindow.on('success', function(e) {
+        alert('OK');
+    });
+
+    $('body').on('click', '.window-link', function(e) {
+        windowOpen($(this).attr('href'));
+        e.preventDefault();
+    });
+
+    $('body').on('keyup', function(e) {
+        if (e.keyCode == 27) {
+            windowClose();
+        }
+    });
+
+    $(document).click(function(e) {
+        if ($(e.target).hasClass('window')) {
+            windowClose();
+        }
+    });
+
+    $('body').on('click', '.window-close', function(e) {
+        windowClose();
+        e.preventDefault();
+    });
+
+    $.validator.addMethod('phoneMask',
+        function(phone_number, element) {
+            return this.optional(element) || phone_number.match(/^\+\d \(\d{3}\) \d{3}\-\d{2}\-\d{2}$/);
+        },
+        'Ошибка заполнения'
+    );
+
+    $('form').each(function() {
+        initForm($(this));
+    });
 
 });
+
+function initForm(curForm) {
+    curForm.find('input.phoneMask').mask('+0 (000) 000-00-00');
+
+    curForm.validate({
+        ignore: '',
+        submitHandler: function(form) {
+            var curForm = $(form);
+            if (curForm.hasClass('ajax-form')) {
+                curForm.addClass('loading');
+                var formData = new FormData(form);
+
+                $.ajax({
+                    type: 'POST',
+                    url: curForm.attr('action'),
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    data: formData,
+                    cache: false
+                }).done(function(data) {
+                    curForm.find('.message').remove();
+                    if (data.status) {
+                        curForm.find('.form-input input, .form-input textarea').each(function() {
+                            $(this).val('');
+                        });
+                        curForm.prepend('<div class="message message-success">' + data.message + '</div>')
+                    } else {
+                        curForm.prepend('<div class="message message-error">' + data.message + '</div>')
+                    }
+                    $('html, body').animate({'scrollTop': curForm.offset().top - $('header').height()});
+                    curForm.removeClass('loading');
+                });
+            } else if (curForm.hasClass('window-form')) {
+                var formData = new FormData(form);
+
+                windowOpen(curForm.attr('action'), formData);
+            } else {
+                form.submit();
+            }
+        }
+    });
+}
 
 $(window).on('load resize', function() {
     $('.speaker-card-descr-text').each(function() {
@@ -597,3 +674,66 @@ $(window).on('load resize scroll', function() {
     }
 
 });
+
+function windowOpen(linkWindow, dataWindow) {
+    if ($('.window').length == 0) {
+        var curPadding = $('.wrapper').width();
+        var curScroll = $(window).scrollTop();
+        $('html').addClass('window-open');
+        curPadding = $('.wrapper').width() - curPadding;
+        $('body').css({'margin-right': curPadding + 'px'});
+
+        $('body').append('<div class="window"><div class="window-loading"></div></div>')
+
+        $('.wrapper').css({'top': -curScroll});
+        $('.wrapper').data('curScroll', curScroll);
+    } else {
+        $('.window').append('<div class="window-loading"></div>')
+        $('.window-container').addClass('window-container-preload');
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: linkWindow,
+        processData: false,
+        contentType: false,
+        dataType: 'html',
+        data: dataWindow,
+        cache: false
+    }).done(function(html) {
+        if ($('.window-container').length == 0) {
+            $('.window').html('<div class="window-container window-container-preload">' + html + '<a href="#" class="window-close"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-close"></use></svg></a></div>');
+        } else {
+            $('.window-container').html(html + '<a href="#" class="window-close"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-close"></use></svg></a>');
+            $('.window .window-loading').remove();
+        }
+
+        window.setTimeout(function() {
+            $('.window-container-preload').removeClass('window-container-preload');
+        }, 100);
+
+        $('.window form').each(function() {
+            initForm($(this));
+        });
+
+        $(window).trigger('resize');
+
+    });
+}
+
+function windowClose() {
+    if ($('.window').length > 0) {
+        if (!$('.window').hasClass('changed')) {
+            $('.window').remove();
+            $('html').removeClass('window-open');
+            $('body').css({'margin-right': 0});
+            $('.wrapper').css({'top': 0});
+            $(window).scrollTop($('.wrapper').data('curScroll'));
+        } else {
+            if (confirm('Закрыть форму?')) {
+                $('.window').removeClass('changed');
+                windowClose();
+            }
+        }
+    }
+}

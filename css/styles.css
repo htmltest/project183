@@ -49,17 +49,129 @@ ol ol li::before {content:counter(point)'.'counter(subpoint); counter-increment:
     p {margin:30px 0}
 }
 
-.btn {display:inline-block; vertical-align:top; margin:0; padding:10px 18px 9px 18px; overflow:visible; outline:none; text-decoration:none; background:transparent; color:#f59444; border:2px solid #f59444; border-radius:0; font:600 14px/21px Arial, Helvetica, sans-serif; letter-spacing:0.05em; text-transform:uppercase; text-align:center; position:relative; -webkit-appearance:none; cursor:pointer; transition:all 0.2s; box-sizing:border-box}
+.btn {display:inline-block; vertical-align:top; margin:0; padding:10px 18px 9px 18px; overflow:visible; outline:none; text-decoration:none; background:transparent; color:#fdbb3b; border:2px solid #f59444; border-radius:0; font:600 14px/21px Arial, Helvetica, sans-serif; letter-spacing:0.05em; text-transform:uppercase; text-align:center; position:relative; -webkit-appearance:none; cursor:pointer; transition:all 0.2s; box-sizing:border-box}
 .fonts-loaded .btn {font-family:GraphikLCG, sans-serif}
-.btn:hover {color:#fff; background:#f59444; border-color:#f59444}
-.btn:active {color:#fff; background:#f59444; border-color:#f59444}
+.btn:hover {color:#fff; background:#fdbb3b; border-color:#fdbb3b}
 .btn span {margin:0 0 0 10px; font-weight:normal}
 .btn svg {display:inline-block; vertical-align:middle; margin:-2px 10px 0 0; fill:none; stroke:#2b2b2b; transition:stroke 0.2s}
 .btn:hover svg {stroke:#fff}
-.btn:active svg {stroke:#fff}
+
+.btn-red {background:#ee2852; border-color:#ee2852; color:#fff}
+.btn-red:hover {color:#fff; background:#ed4569; border-color:#ed4569}
 
 @media screen and (max-width:1199px) {
     .btn {padding:18px; border-width:3px; font-size:20px; line-height:26px}
+}
+
+form.loading {position:relative}
+form.loading::after {content:""; display:block; position:absolute; left:0; top:0; right:0; bottom:0; background:rgba(255, 255, 255, 0.7) url(../images/loading.gif) no-repeat center; z-index:1}
+
+.message {margin:20px 0; padding:21px 30px 21px 21px; text-align:left; max-width:700px}
+.message::after {content:""; display:block; clear:both}
+.message-title {font-weight:normal; font-size:18px; line-height:27px; position:relative; float:left; width:140px; margin:6px 0 0 50px}
+.message-title::before {content:""; display:block; position:absolute; left:-48px; top:-5px; width:38px; height:38px}
+.message-text {margin:0 0 0 211px; color:#333; position:relative; min-height:48px; font-size:16px; line-height:24px}
+.message-text::before {content:""; display:block; position:absolute; left:-21px; top:0; bottom:0; width:1px}
+.message-text p {margin:0}
+.message-text p+p {margin-top:10px}
+
+@media (max-width:1199px) {
+    .message {margin:30px 0; padding:27px 29px 20px 29px}
+    .message+.message {margin-top:-15px}
+    .message-title {font-weight:500; font-size:20px; line-height:30px; float:none; width:auto; margin:0; padding:0 0 0 57px}
+    .message-title::before {left:0; top:-4px}
+    .message-text {margin:13px 0 0 0; min-height:0; font-size:18px; line-height:27px; font-weight:normal; color:#696969}
+    .message-text::before {display:none}
+}
+
+.message-success {background:#edfbec; border:1px solid #75ff83}
+.message-success .message-title {color:#53804f}
+.message-success .message-title::before {background:url(../images/message-success.svg) no-repeat center}
+.message-success .message-text::before {background:#53804f}
+.message-error {background:#fef6f6; border:1px solid #ffd1cb}
+.message-error .message-title::before {background:url(../images/message-error.svg) no-repeat center}
+.message-error .message-title {color:#ec1d22}
+.message-error .message-text::before {background:#ec1d22}
+
+.form-label {margin:29px 0 4px 0; font-weight:normal; font-size:17px; line-height:26px; color:#a7a4a1}
+
+.form-input {margin:20px 0; position:relative}
+.form-label+.form-input {margin-top:4px}
+.form-input input,
+.form-input textarea {position:relative; border:1px solid #c4c4c4; font:500 16px/24px Arial, sans-serif; color:#000; vertical-align:top; margin:0; padding:9px; width:100%; height:59px; box-sizing:border-box; outline:none; border-radius:0; background:#fdfdfd; -webkit-appearance:none; transition:border-color 0.2s}
+.fonts-loaded .form-input input,
+.fonts-loaded .form-input textarea {font-family:GraphikLCG, sans-serif}
+.form-input input::-webkit-input-placeholder {opacity:1; color:#b0b0b0}
+.form-input input::-moz-placeholder {opacity:1; color:#b0b0b0}
+.form-input input:-ms-input-placeholder {opacity:1; color:#b0b0b0}
+.form-input textarea::-webkit-input-placeholder {opacity:1; color:#b0b0b0}
+.form-input textarea::-moz-placeholder {opacity:1; color:#b0b0b0}
+.form-input textarea:-ms-input-placeholder {opacity:1; color:#b0b0b0}
+.form-input textarea {height:auto; resize:none; overflow:auto}
+.form-input input.error,
+.form-input textarea.error {border-color:#f17a7a}
+.form-input input.valid,
+.form-input textarea.valid {border-color:#bdab5c}
+.form-input input:hover,
+.form-input textarea:hover {border-color:#8e8e8e}
+.form-input input:focus,
+.form-input textarea:focus {border-color:#fec34f}
+.form-input input[readonly],
+.form-input input[disabled],
+.form-input textarea[readonly],
+.form-input textarea[disabled] {background:#f0f0f0; border-color:#f0f0f0}
+label.error {display:block; font-size:12px; line-height:18px; color:#bd423a; margin:5px 0 0 0; text-align:right}
+
+@media screen and (max-width:767px) {
+    .form-input input,
+    .form-input textarea {font-size:18px; line-height:64px; height:66px}
+    .form-input textarea {height:auto; line-height:27px}
+    .form-input input::-webkit-input-placeholder {color:#8a8a8a}
+    .form-input input::-moz-placeholder {color:#8a8a8a}
+    .form-input input:-ms-input-placeholder {color:#8a8a8a}
+    .form-input textarea::-webkit-input-placeholder {color:#8a8a8a}
+    .form-input textarea::-moz-placeholder {color:#8a8a8a}
+    .form-input textarea:-ms-input-placeholder {color:#8a8a8a}
+}
+
+@-webkit-keyframes autofill {to {color:#000; background:#fdfdfd}}
+.form-input input:-webkit-autofill {-webkit-animation-name:autofill; -webkit-animation-fill-mode:both}
+
+.form-input-clear {display:none; position:absolute; right:5px; top:50%; margin-top:-12px; width:24px; height:24px; border-radius:50%; background:#fff; border:1px solid #000}
+.form-input-clear:hover {background:#000}
+.form-input-clear svg {display:block; width:24px; height:24px; fill:none; stroke:#25282b; margin:-1px 0 0 -1px; transition:all 0.2s}
+.form-input-clear:hover svg {stroke:#fff}
+.form-input.full .form-input-clear {display:block}
+
+.form-checkbox {margin:20px 0; color:#504f4f; font-size:16px; line-height:21px; font-weight:normal}
+.form-checkbox::after {content:""; display:block; clear:both}
+.form-checkbox label {float:left; display:block; position:relative}
+.form-checkbox input {display:none}
+.form-checkbox span {display:block; position:relative; padding:0 0 0 32px; cursor:pointer}
+.form-checkbox span::before {content:""; display:block; width:20px; height:20px; border:2px solid #e5e5e5; position:absolute; left:0; top:0; background:url(../images/checkbox.svg) no-repeat -999px -999px; transition:border-color 0.2s, background-color 0.2s}
+.form-checkbox label:hover span::before {border-color:#f59444}
+.form-checkbox input:disabled+span {cursor:default; color:#999}
+.form-checkbox input:disabled+span::before {border-color:#e5e5e5; background:#e5e5e5}
+.form-checkbox input.error+span,
+.form-checkbox input.error+label.error+span {padding-bottom:31px}
+.form-checkbox input.error+span::before,
+.form-checkbox input.error+label.error+span::before {border-color:#bd423a}
+.form-checkbox input:checked+span::before,
+.form-checkbox input:checked+label.error+span::before {background-position:center; border-color:#f59444; background-color:#f59444}
+.form-checkbox label.error {position:absolute; right:0; bottom:0; white-space:nowrap}
+.form-checkbox a {color:#f59444; text-decoration:none}
+.form-checkbox a:hover {text-decoration:underline}
+
+.form-ctrl {margin:39px 0 0 0; text-align:right}
+.form-ctrl .form-checkbox {margin:0 80px 0 0; display:inline-block; vertical-align:middle}
+.form-ctrl .form-submit {display:inline-block; vertical-align:middle}
+.form-ctrl .btn {padding:18px 28px; line-height:18px}
+
+@media (max-width:1199px) {
+    .form-ctrl {text-align:left}
+    .form-ctrl .form-checkbox {margin:0; display:block}
+    .form-ctrl .form-submit {display:block; margin:40px 0 0 0}
+    .form-ctrl .btn {padding:18px 0; line-height:26px; width:100%; border-width:2px}
 }
 
 .on-mobile {display:none}
@@ -1287,4 +1399,115 @@ footer {margin:100px 0 0 0}
 
 @media screen and (max-width:767px) {
     .photo-gallery-more {display:none}
+}
+
+
+.window-open,
+.window-open body {overflow:hidden; position:fixed; left:0; top:0; right:0; bottom:0}
+
+.window {position:fixed; left:0; top:0; right:0; bottom:0; overflow:auto; z-index:999; background:#e5e5e5; text-align:center}
+.window::before {content:""; display:inline-block; height:100%; vertical-align:middle}
+.window-loading {position:absolute; left:0; top:0; right:0; bottom:0; background:url(../images/loading.gif) no-repeat center}
+.window-container {display:inline-block; vertical-align:top; position:relative; text-align:left; background:#fff; margin:30px 0; transition:transform 0.2s, opacity 0.2s}
+.window-container-preload {opacity:0}
+.window-close {display:block; position:absolute; right:30px; top:17px; width:35px; height:35px; background:#fff; border-radius:50%; transition:background-color 0.2s}
+.window-close:hover {background:#f59444}
+.window-close svg {display:block; position:absolute; left:50%; top:50%; width:17px; height:17px; margin:-8.5px 0 0 -8.5px; fill:none; stroke:#000}
+
+@media (max-width:1199px) {
+    .window-container {margin:60px 0}
+    .window-close {right:0; top:-55px}
+}
+
+.window-title {background:#fcf0e4; padding:19px 120px 19px 40px; color:#000; font-weight:600; font-size:24px; line-height:36px; position:relative}
+
+@media (max-width:1199px) {
+    .window-title {padding:17px 20px}
+}
+
+.window-title-social {display:block; position:absolute; right:85px; top:17px}
+.window-title-social-icon {width:35px; height:35px; background:#fff; border-radius:50%}
+.window-title-social:hover .window-title-social-icon {background:#f59444}
+.window-title-social-icon svg {display:block; fill:none; stroke:#000; transition:all 0.2s; width:18px; height:20px; position:absolute; left:50%; top:50%; margin:-10px 0 0 -9px}
+.window-title-social-window {display:none; position:absolute; z-index:99; left:50%; top:100%; margin:14px 0 0 -72px; padding:9px 0 0 17px; width:144px; height:47px; background:#424242; box-shadow:6px 6px 20px rgba(36, 36, 36, 0.13)}
+.window-title-social-window::before {content:""; display:block; position:absolute; left:50%; top:-7px; width:14px; height:14px; background:#424242; margin-left:-7px; transform:rotate(45deg)}
+.window-title-social-window::after {content:""; display:block; position:absolute; left:-1px; top:-15px; right:-1px; height:16px; background:url(../images/blank.gif)}
+.window-title-social:hover .window-title-social-window {display:block}
+.window-title-social-item {float:left; width:29px; margin:0 0 0 14px; position:relative}
+.window-title-social-item:first-child {margin:0}
+.window-title-social-item svg {display:block; width:29px; height:29px; transition:all 0.2s}
+.window-title-social-item.window-title-social-item-link {background:#fff; border-radius:50%}
+.window-title-social-item.window-title-social-item-link:hover {background:#f59444}
+.window-title-social-item.window-title-social-item-link svg {stroke:#000; fill:none}
+.window-title-social-item.window-title-social-item-fb svg {fill:#fff}
+.window-title-social-item.window-title-social-item-vk svg {fill:#fff}
+.window-title-social-item.window-title-social-item-link:hover svg {stroke:#fff}
+.window-title-social-item.window-title-social-item-fb:hover svg {fill:#f59444}
+.window-title-social-item.window-title-social-item-vk:hover svg {fill:#f59444}
+
+@media (max-width:1199px) {
+    .window-title-social {right:55px; top:-55px}
+}
+
+.window-general {width:680px}
+.window-general-container {padding:40px}
+.window-general-container > *:first-child {margin-top:0}
+.window-general-container > *:last-child {margin-bottom:0}
+.window-general-container h4 {font-size:24px; line-height:31px}
+.window-general-ctrl {text-align:center; background:#fcf0e4; padding:18px 40px}
+.window-general-ctrl .btn {margin:0 8px}
+
+@media screen and (max-width:1199px) {
+    .window-general {width:calc(100vw - 40px)}
+    .window-general-container {padding:30px 20px}
+    .window-general-ctrl {padding:20px}
+    .window-general-ctrl .btn {margin:10px 0 0 0; width:100%}
+    .window-general-ctrl .btn:first-child {margin:0}
+}
+
+.fest-new-header {margin:60px 0 0 0}
+.fest-new-header::after {content:""; display:block; clear:both}
+.fest-new-header-text {float:right; width:50%; padding:0 0 0 10px}
+.fest-new-header-contacts {float:left; width:50%; padding:0 10px 0 0}
+.fest-new-header-contacts-title {font-weight:600; font-size:30px; line-height:30px; color:#000}
+.fest-new-header-contacts-list {margin:10px 0 0 0; display:table}
+.fest-new-header-contacts-row {display:table-row}
+.fest-new-header-contacts-row-title {display:table-cell; vertical-align:top; padding:10px 0 0 0; font-weight:normal}
+.fest-new-header-contacts-row-value {display:table-cell; vertical-align:top; padding:10px 0 0 20px; font-weight:600; color:#000}
+.fest-new-header-contacts-row-value a {text-decoration:none}
+.fest-new-header-contacts-social {margin:30px 0 0 0; font-size:0; line-height:0; letter-spacing:-1px}
+.fest-new-header-contacts-social-item {display:inline-block; vertical-align:top; margin:0 0 0 30px}
+.fest-new-header-contacts-social-item:first-child {margin:0}
+.fest-new-header-contacts-social-item svg {display:block; width:28px; height:28px; fill:#000; transition:fill 0.2s}
+.fest-new-header-contacts-social-item:hover svg {fill:#fec34f}
+
+@media (max-width:1199px) {
+    .fest-new-header {margin:33px 0 0 0}
+    .fest-new-header-text {float:none; width:auto; padding:0}
+    .fest-new-header-contacts {float:none; width:auto; padding:0; margin:40px 0 0 0}
+    .fest-new-header-contacts-title {font-weight:600; font-size:30px; line-height:30px; color:#000}
+    .fest-new-header-contacts-list {margin:20px 0 0 0; display:block}
+    .fest-new-header-contacts-row {display:block; margin:20px 0 0 0}
+    .fest-new-header-contacts-row-title {display:block; padding:0; font-size:18px; line-height:27px}
+    .fest-new-header-contacts-row-value {display:block; padding:5px 0 0 0}
+    .fest-new-header-contacts-social {margin:40px 0 0 0}
+    .fest-new-header-contacts-social-item {margin:0 0 0 47px}
+    .fest-new-header-contacts-social-item:first-child {margin:0}
+    .fest-new-header-contacts-social-item svg {width:40px; height:40px}
+}
+
+.fest-new-form {margin:80px 0 0 0}
+.fest-new-form-title {font-weight:600; font-size:30px; line-height:30px; color:#000}
+.fest-new-form form {margin:44px 0 0 0}
+.fest-new-form-row {margin:29px -10px}
+.fest-new-form-row::after {content:""; display:block; clear:both}
+.fest-new-form-field {float:left; width:50%; padding:0 10px}
+.fest-new-form-field > *:first-child {margin-top:0}
+.fest-new-form-field > *:last-child {margin-bottom:0}
+
+@media (max-width:1199px) {
+    .fest-new-form {margin:74px 0 0 0}
+    .fest-new-form form {margin:40px 0 0 0}
+    .fest-new-form-row {margin:29px 0 0 0}
+    .fest-new-form-field {float:none; width:auto; padding:0; margin:29px 0 0 0}
 }
