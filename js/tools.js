@@ -582,7 +582,7 @@ $(document).ready(function() {
 
     $.validator.addMethod('phoneMask',
         function(phone_number, element) {
-            return this.optional(element) || phone_number.match(/^\+\d \(\d{3}\) \d{3}\-\d{2}\-\d{2}$/);
+            return this.optional(element) || phone_number.match(/^\+\d+$/);
         },
         'Ошибка заполнения'
     );
@@ -594,7 +594,13 @@ $(document).ready(function() {
 });
 
 function initForm(curForm) {
-    curForm.find('input.phoneMask').mask('+0 (000) 000-00-00');
+    curForm.find('input.phoneMask').mask('+ZZZZZZZZZZZZZZZZZZZZ', {
+        translation: {
+            'Z': {
+                pattern: /[0-9]/, optional: true
+            }
+        }
+    });
 
     curForm.validate({
         ignore: '',
@@ -618,9 +624,9 @@ function initForm(curForm) {
                         curForm.find('.form-input input, .form-input textarea').each(function() {
                             $(this).val('');
                         });
-                        curForm.prepend('<div class="message message-success">' + data.message + '</div>')
+                        curForm.prepend('<div class="message message-success"><div class="message-title">Отправлено</div><div class="message-text">' + data.message + '</div></div>')
                     } else {
-                        curForm.prepend('<div class="message message-error">' + data.message + '</div>')
+                        curForm.prepend('<div class="message message-error"><div class="message-title">Ошибка</div><div class="message-text">' + data.message + '</div></div>')
                     }
                     $('html, body').animate({'scrollTop': curForm.offset().top - $('header').height()});
                     curForm.removeClass('loading');
