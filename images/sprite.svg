@@ -131,18 +131,38 @@
         <path d="M12.8435 5.4248L7.16016 8.74147" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
     </symbol>
 
-    <symbol viewBox="0 0 24 24" id="header-search">
-        <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M21.0004 20.9999L16.6504 16.6499" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <symbol viewBox="0 0 18 18" id="video-search">
+        <path d="M8.25 14.25C11.5637 14.25 14.25 11.5637 14.25 8.25C14.25 4.93629 11.5637 2.25 8.25 2.25C4.93629 2.25 2.25 4.93629 2.25 8.25C2.25 11.5637 4.93629 14.25 8.25 14.25Z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M15.7498 15.75L12.4873 12.4875" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
     </symbol>
 
-    <symbol viewBox="0 0 22 20" id="programm-filter">
-        <path d="M21 1H1L9 10.46V17L13 19V10.46L21 1Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <symbol viewBox="0 0 24 24" id="btn-icon-doc">
+        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M14 2V8H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M16 13H8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M16 17H8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M10 9H9H8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </symbol>
 
-    <symbol viewBox="0 0 24 24" id="programm-filter-param-remove">
-        <path d="M15 9L9 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M9 9L15 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <symbol viewBox="0 0 24 24" id="btn-icon-add">
+        <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M14 2V8H20"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M12 18.4953V12"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M8.75235 15.2477L15.2477 15.2477"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+
+    <symbol viewBox="0 0 46 46" id="filter-open">
+        <rect width="46" height="46" fill="#F59444" />
+        <path d="M15.2546 16.61C17.2746 19.2 21.0046 24 21.0046 24V30C21.0046 30.55 21.4546 31 22.0046 31H24.0046C24.5546 31 25.0046 30.55 25.0046 30V24C25.0046 24 28.7246 19.2 30.7446 16.61C31.2546 15.95 30.7846 15 29.9546 15H16.0446C15.2146 15 14.7446 15.95 15.2546 16.61Z" fill="white" />
+    </symbol>
+
+    <symbol viewBox="0 0 46 46" id="filter-close">
+        <rect width="46" height="46" fill="#F59444" />
+        <path d="M25.0439 23.3534L32.2141 30.5236L31.0234 31.7143L23.8532 24.5441L23.4996 24.1905L23.1461 24.5441L15.9759 31.7143L14.7852 30.5236L21.9554 23.3534L22.309 22.9999L21.9554 22.6463L14.7852 15.4761L15.9759 14.2855L23.1461 21.4557L23.4996 21.8092L23.8532 21.4557L31.0234 14.2855L32.2141 15.4761L25.0439 22.6463L24.6903 22.9999L25.0439 23.3534Z" fill="white" stroke="white" />
+    </symbol>
+
+    <symbol viewBox="0 0 10 6" id="speakers-filter-arrow">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M-9.53674e-07 0.60012C-9.53674e-07 0.753712 0.0544424 0.907305 0.162774 1.0243L4.60716 5.82406C4.82438 6.05865 5.17548 6.05865 5.3927 5.82406L9.83709 1.0243C10.0543 0.78971 10.0543 0.410529 9.83709 0.175941C9.61987 -0.0586471 9.26876 -0.0586471 9.05154 0.175941L4.99993 4.55152L0.948319 0.175941C0.7311 -0.0586471 0.379993 -0.0586471 0.162774 0.175941C0.0544424 0.292935 -9.53674e-07 0.446528 -9.53674e-07 0.60012Z" />
     </symbol>
 
 </svg>

@@ -591,7 +591,96 @@ $(document).ready(function() {
         initForm($(this));
     });
 
+    $('.video-filter-btn a').click(function(e) {
+        $('html').toggleClass('video-filter-open');
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.speakers-container .pager a', function(e) {
+        $('.speakers-container .pager a.active').removeClass('active');
+        $(this).addClass('active');
+        filterSpeakers();
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.speakers-letters a', function(e) {
+        var curLink = $(this);
+        if (curLink.hasClass('active')) {
+            curLink.removeClass('active');
+        } else {
+            $('.speakers-letters a.active').removeClass('active');
+            curLink.addClass('active');
+        }
+        filterSpeakers();
+        e.preventDefault();
+    });
+
+    $('body').on('change', '.speakers-filter-item input', function(e) {
+        filterSpeakers();
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.speakers-filter-group-header', function(e) {
+        $(this).parent().toggleClass('open');
+        $(this).parent().addClass('open-mobile');
+    });
+
+    $('body').on('click', '.speakers-filter-group-all a', function(e) {
+        $(this).parent().parent().toggleClass('all');
+        e.preventDefault();
+    });
+
+    $('.speakers-filter-group-all').each(function() {
+        var curBlock = $(this).parent();
+        if (curBlock.find('> .speakers-filter-item').length > 6) {
+            $(this).addClass('visible');
+            $(this).find('em').html(curBlock.find('> .speakers-filter-item').length - 6);
+        }
+    });
+
+    $('.speakers-filter-reset a').click(function(e) {
+        $('.speakers-filter-item input').prop('checked', false);
+        filterSpeakers();
+        if ($('html').hasClass('speakers-filter-open')) {
+            $('html').removeClass('speakers-filter-open');
+            $('.wrapper').css('margin-top', 0);
+            $(window).scrollTop($('html').data('scrollTop'));
+        }
+        e.preventDefault();
+    });
+
 });
+
+function filterSpeakers() {
+    $('.speakers-container').addClass('loading');
+    var curForm = $('.speakers-filter form');
+    var curData = curForm.serialize();
+    curData += '&page=' + $('.pager a.active').attr('data-value');
+    if ($('.speakers-letters a.active').length == 1) {
+        curData += '&letter=' + $('.speakers-letters a.active').html();
+    }
+    $.ajax({
+        type: 'POST',
+        url: curForm.attr('action'),
+        dataType: 'html',
+        data: curData,
+        cache: false
+    }).done(function(html) {
+        $('.speakers-container .speakers').html($(html).find('.speakers').html())
+        $('.speakers-container .pager').html($(html).find('.pager').html())
+        $('.speakers-container').removeClass('loading');
+        if ($(window).width() > 1199) {
+            $('html, body').animate({'scrollTop': $('.video-header').offset().top - 50});
+        } else {
+            $('html, body').animate({'scrollTop': 0});
+        }
+
+        $('.speaker').each(function() {
+            var curItem = $(this);
+            curItem.find('.speaker-inner').append('<div class="speaker-detail"><div class="speaker-name">' + curItem.find('.speaker-name').html() + '</div><div class="speaker-text">' + curItem.find('.speaker-text').html() + '</div></div>');
+        });
+    });
+}
 
 function initForm(curForm) {
     curForm.find('input.phoneMask').mask('+ZZZZZZZZZZZZZZZZZZZZ', {
@@ -599,6 +688,31 @@ function initForm(curForm) {
             'Z': {
                 pattern: /[0-9]/, optional: true
             }
+        }
+    });
+
+    curForm.find('.form-select select').each(function() {
+        var curSelect = $(this);
+        var options = {
+            minimumResultsForSearch: 20
+        }
+        if (curSelect.prop('multiple')) {
+            options['closeOnSelect'] = false;
+        }
+
+        if (curSelect.parents().filter('.window').length == 1) {
+            options['dropdownParent'] = $('.window-content');
+        }
+
+        curSelect.select2(options);
+        curSelect.on('select2:selecting', function (e) {
+            if (curSelect.prop('multiple')) {
+                var $searchfield = $(this).parent().find('.select2-search__field');
+                $searchfield.val('').trigger('focus');
+            }
+        });
+        if (curSelect.find('option:selected').legnth > 0 || curSelect.find('option').legnth == 1 || curSelect.find('option:first').html() != '') {
+            curSelect.trigger({type: 'select2:select'})
         }
     });
 

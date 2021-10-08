@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <title>Moscow Urban Fest</title>
+
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="js/slick/slick.css" />
+        <link rel="stylesheet" href="js/mcustomscrollbar/jquery.mCustomScrollbar.css" />
+        <link rel="stylesheet" href="js/select2/select2.css" />
+
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width" />
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+
+            <header>
+                <div class="container">
+                    <div class="logo"><a href="#"><svg><use xlink:href="images/sprite.svg#logo"></use></svg></a></div>
+
+                    <div class="header-right">
+                        <a href="#" class="mobile-menu-link"><svg><use xlink:href="images/sprite.svg#mobile-menu-link"></use></svg><svg><use xlink:href="images/sprite.svg#mobile-menu-close"></use></svg></a>
+                        <a href="#" class="header-lang">EN</a>
+                    </div>
+
+                    <nav class="nav">
+                        <div class="nav-inner">
+                            <ul>
+                                <li><a href="#"><span>О чем?</span></a></li>
+                                <li><a href="#"><span>Где?</span></a></li>
+                                <li><a href="#"><span>Манифест</span></a></li>
+                                <li><a href="#"><span>Программа</span></a>
+                                <li><a href="#"><span>Прогулки с разным Умвельтом</span></a></li>
+                                <li class="active"><a href="#"><span>Спикеры</span></a></li>
+                                <li><a href="#"><span>Партнеры</span></a></li>
+                                <li>
+                                    <a href="#"><span>Архив</span><svg><use xlink:href="images/sprite.svg#nav-arrow"></use></svg></a>
+                                    <ul>
+                                        <li><a href="#">2019</a></li>
+                                        <li><a href="#">2018</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+            </header>
+
+            <!-- container -->
+            <div class="container">
+
+                <div class="video-header">
+                    <h1>Спикеры</h1>
+                    <div class="video-filter-btn"><a href="#"><svg><use xlink:href="images/sprite.svg#filter-open"></use></svg><svg><use xlink:href="images/sprite.svg#filter-close"></use></svg></a></div>
+                    <div class="video-ctrl">
+                        <form action="#" method="post">
+                            <div class="video-search">
+                                <div class="video-search-inner">
+                                    <div class="form-input"><input type="text" name="search" value="" placeholder="Поиск" /></div>
+                                    <div class="video-search-submit"><button><svg><use xlink:href="images/sprite.svg#video-search"></use></svg></button></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- speakers page -->
+                <div class="speakers-page">
+
+                    <!-- speakers filter -->
+                    <div class="speakers-filter">
+                        <form action="ajax/speakers.html" method="post">
+                            <!-- speakers filter group -->
+                            <div class="speakers-filter-group open">
+                                <div class="speakers-filter-group-header">Годы<svg><use xlink:href="images/sprite.svg#speakers-filter-arrow"></use></svg></div>
+                                <div class="speakers-filter-group-container">
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year1" /><span>2019</span><strong>4</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year2" /><span>2018</span><strong>91</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year3" /><span>2017</span><strong>3</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year4" checked="checked" /><span>2016</span><strong>44</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year5" /><span>2015</span><strong>12</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year6" /><span>2014</span><strong>12</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year7" /><span>2013</span><strong>12</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year8" /><span>2012</span><strong>12</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year9" /><span>2011</span><strong>12</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year10" /><span>2010</span><strong>12</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year11" /><span>2009</span><strong>12</strong></label></div>
+                                    <div class="speakers-filter-item"><label><input type="checkbox" name="year12" /><span>2008</span><strong>12</strong></label></div>
+                                    <div class="speakers-filter-group-all"><a href="#"><span>еще <em></em></span><span>свернуть</span></a></div>
+                                </div>
+                            </div>
+                            <!-- speakers filter group END -->
+
+                            <div class="speakers-filter-reset"><a href="#">Очистить фильтр</a></div>
+                        </form>
+                    </div>
+                    <!-- speakers filter END -->
+
+                    <!-- speakers container -->
+                    <div class="speakers-container">
+                        <div class="speakers-content">
+
+                            <div class="speakers-letters">
+                                <a href="#">А</a>
+                                <a href="#">Б</a>
+                                <a href="#">В</a>
+                                <a href="#">Г</a>
+                                <a href="#" class="active">Д</a>
+                                <a href="#">Е</a>
+                                <span>Ё</span>
+                                <a href="#">Ж</a>
+                                <a href="#">З</a>
+                                <a href="#">И</a>
+                                <span>Й</span>
+                                <a href="#">К</a>
+                                <a href="#">Л</a>
+                                <a href="#">М</a>
+                                <a href="#">Н</a>
+                                <a href="#">О</a>
+                                <a href="#">П</a>
+                                <a href="#">Р</a>
+                                <a href="#">С</a>
+                                <a href="#">Т</a>
+                                <a href="#">У</a>
+                                <a href="#">Ф</a>
+                                <a href="#">Х</a>
+                                <a href="#">Ц</a>
+                                <a href="#">Ш</a>
+                                <a href="#">Ч</a>
+                                <a href="#">Щ</a>
+                                <span>Ъ</span>
+                                <span>Ы</span>
+                                <span>Ь</span>
+                                <a href="#">Э</a>
+                                <a href="#">Ю</a>
+                                <a href="#">Я</a>
+                            </div>
+
+                            <!-- speakers -->
+                            <div class="speakers">
+                                <div class="speaker">
+                                    <a href="#" class="speaker-inner">
+                                        <div class="speaker-photo"><img src="files/speaker-01.jpg" alt="" /></div>
+                                        <div class="speaker-name">Эдвард Глейзер</div>
+                                        <div class="speaker-text">Профессор экономики им. Фреда и Элеоноры Глимп, директор Центра государственного и местного управления им. Таубмана и Института Большого Бостона им. Раппапорта в Гарвардском университете</div>
+                                    </a>
+                                </div>
+                                <div class="speaker">
+                                    <a href="#" class="speaker-inner">
+                                        <div class="speaker-photo"><img src="files/speaker-02.jpg" alt="" /></div>
+                                        <div class="speaker-name">Илариа Капуа</div>
+                                        <div class="speaker-text">Вирусолог, Университет Флориды</div>
+                                    </a>
+                                </div>
+                                <div class="speaker">
+                                    <a href="#" class="speaker-inner">
+                                        <div class="speaker-photo"><img src="files/speaker-03.jpg" alt="" /></div>
+                                        <div class="speaker-name">Эллисон Арвади</div>
+                                        <div class="speaker-text">Комиссар Департамента общественного здравоохранения Чикаго, США</div>
+                                    </a>
+                                </div>
+                                <div class="speaker">
+                                    <a href="#" class="speaker-inner">
+                                        <div class="speaker-photo"><img src="files/speaker-04.jpg" alt="" /></div>
+                                        <div class="speaker-name">Пьеро Пелиццаро</div>
+                                        <div class="speaker-text">Директор по вопросам устойчивости, Милан</div>
+                                    </a>
+                                </div>
+                                <div class="speaker">
+                                    <a href="#" class="speaker-inner">
+                                        <div class="speaker-photo"><img src="files/speaker-05.jpg" alt="" /></div>
+                                        <div class="speaker-name">Саду А. Джонстон</div>
+                                        <div class="speaker-text">Сити-менеджер, Ванкувер; бывший главный инспектор по экологии, Чикаго</div>
+                                    </a>
+                                </div>
+                                <div class="speaker">
+                                    <a href="#" class="speaker-inner">
+                                        <div class="speaker-photo"><img src="files/speaker-06.jpg" alt="" /></div>
+                                        <div class="speaker-name">Майкл Беркович</div>
+                                        <div class="speaker-text">Со-основатель, Resilient City Catalyst</div>
+                                    </a>
+                                </div>
+                                <div class="speaker">
+                                    <a href="#" class="speaker-inner">
+                                        <div class="speaker-photo"><img src="files/speaker-07.jpg" alt="" /></div>
+                                        <div class="speaker-name">Ян Гейл</div>
+                                        <div class="speaker-text">Основатель, Gehl Architects</div>
+                                    </a>
+                                </div>
+                                <div class="speaker">
+                                    <a href="#" class="speaker-inner">
+                                        <div class="speaker-photo"><img src="files/speaker-08.jpg" alt="" /></div>
+                                        <div class="speaker-name">Грег Линдси</div>
+                                        <div class="speaker-text">Руководитель направления «Мобильность», NewCities Foundation</div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- speakers END -->
+
+                            <div class="pager">
+                                <a href="#" class="pager-prev" data-value="prev"><svg><use xlink:href="images/sprite.svg#pager-prev"></use></svg></a>
+                                <a href="#" class="active" data-value="1">1</a>
+                                <a href="#" data-value="2">2</a>
+                                <a href="#" data-value="3">3</a>
+                                <span>...</span>
+                                <a href="#" data-value="12">12</a>
+                                <a href="#" data-value="13">13</a>
+                                <a href="#" data-value="14">14</a>
+                                <a href="#" class="pager-next" data-value="next"><svg><use xlink:href="images/sprite.svg#pager-next"></use></svg></a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- speakers container -->
+
+                </div>
+                <!-- speakers page -->
+
+            </div>
+            <!-- container END -->
+
+            <div class="prefooter">
+                <div class="container">
+                    <div class="breadcrumbs"><a href="#">Главная</a> &nbsp;<span>/</span>&nbsp; Спикеры</div>
+                    <div class="sitemap-link"><a href="#">Карта сайта</a></div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="footer-social">
+                    <div class="container">
+                        <div class="footer-social-item"><a href="#" target="_blank"><svg><use xlink:href="images/sprite.svg#icon-telegram"></use></svg></a></div>
+                        <div class="footer-social-item"><a href="#" target="_blank"><svg><use xlink:href="images/sprite.svg#icon-fb"></use></svg></a></div>
+                        <div class="footer-social-item"><a href="#" target="_blank"><svg><use xlink:href="images/sprite.svg#icon-instagram"></use></svg></a></div>
+                        <div class="footer-social-item"><a href="#" target="_blank"><svg><use xlink:href="images/sprite.svg#icon-youtube"></use></svg></a></div>
+                        <div class="footer-social-item"><a href="#" target="_blank"><svg><use xlink:href="images/sprite.svg#icon-vk"></use></svg></a></div>
+                    </div>
+                </div>
+
+                <div class="footer-content">
+                    <div class="container">
+                        <div class="footer-left">
+                            <div class="footer-logo"><svg><use xlink:href="images/sprite.svg#logo"></use></svg></div>
+                            <div class="footer-text">Мероприятие в рамках Московского урбанистического форума 2021</div>
+                        </div>
+
+                        <div class="footer-menu">
+                            <div class="footer-title">Разделы</div>
+                            <div class="footer-menu-inner">
+                                <div class="footer-menu-item"><a href="#"><span>О чем?</span></a></div>
+                                <div class="footer-menu-item"><a href="#"><span>Где?</span></a></div>
+                                <div class="footer-menu-item"><a href="#"><span>Манифест</span></a></div>
+                                <div class="footer-menu-item"><a href="#"><span>Программа</span></a></div>
+                                <div class="footer-menu-item"><a href="#"><span>Прогулки с разным Умвельтом</span></a></div>
+                                <div class="footer-menu-item"><a href="#"><span>Спикеры</span></a></div>
+                                <div class="footer-menu-item"><a href="#"><span>Партнеры</span></a></div>
+                            </div>
+                        </div>
+
+                        <div class="footer-menu on-mobile">
+                            <div class="footer-title">Архив</div>
+                            <div class="footer-menu-inner">
+                                <div class="footer-menu-item"><a href="#"><span>2019</span></a></div>
+                                <div class="footer-menu-item"><a href="#"><span>2018</span></a></div>
+                            </div>
+                        </div>
+
+                        <div class="footer-contacts">
+                            <div class="footer-contacts-left">
+                                <div class="footer-title">По вопросам партнерства</div>
+                                <div class="footer-contacts-item"><a href="mailto:partners@mosurbanforum.ru">partners@mosurbanforum.ru</a></div>
+
+                                <div class="footer-title">Стать подрядчиком</div>
+                                <div class="footer-contacts-item"><a href="mailto:tenders@mosurbanforum.ru">tenders@mosurbanforum.ru</a></div>
+
+                                <div class="no-mobile">
+                                    <div class="footer-title">Архив</div>
+                                    <div class="footer-menu-inner">
+                                        <div class="footer-menu-item"><a href="#"><span>2019</span></a></div>
+                                        <div class="footer-menu-item"><a href="#"><span>2018</span></a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="footer-contacts-right">
+                                <div class="footer-title">Телефон</div>
+                                <div class="footer-contacts-item"><a href="tel:+74996411682">+7 (499) 641-16-82</a></div>
+
+                                <div class="footer-title">Контакты</div>
+                                <div class="footer-contacts-item"><a href="mailto:welcome@mosurbanforum.ru">welcome@mosurbanforum.ru</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="copyrights">© Moscow Urban Forum, 2011-2020.</div>
+                        <div class="policy">С положением о конфиденциальности персональных данных можно ознакомиться <a href="#">здесь</a>.</div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <a href="#" class="up-link"><svg><use xlink:href="images/sprite.svg#up-link"></use></svg></a>
+
+        <script>
+            var pathTemplate = './';
+        </script>
+        <script src="js/fonts.js"></script>
+
+        <script src="js/svg4everybody.min.js"></script>
+        <script>svg4everybody();</script>
+
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/slick/slick.min.js"></script>
+        <script src="js/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/masonry.pkgd.min.js"></script>
+        <script src="js/clipboard.min.js"></script>
+        <script src="js/jquery.mask.min.js"></script>
+        <script src="js/validation/jquery.validate.min.js"></script>
+        <script src="js/validation/messages_ru.js"></script>
+        <script src="js/select2/select2.min.js"></script>
+        <script src="js/select2/ru.js"></script>
+        <script src="js/tools.js"></script>
+
+    </body>
+</html>
