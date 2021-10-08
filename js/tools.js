@@ -618,9 +618,9 @@ function initForm(curForm) {
                         curForm.find('.form-input input, .form-input textarea').each(function() {
                             $(this).val('');
                         });
-                        curForm.prepend('<div class="message message-success"><div class="message-title">Отправлено</div><div class="message-text">' + data.message + '</div></div>')
+                        curForm.prepend('<div class="message message-success">' + data.message + '</div>')
                     } else {
-                        curForm.prepend('<div class="message message-error"><div class="message-title">Ошибка</div><div class="message-text">' + data.message + '</div></div>')
+                        curForm.prepend('<div class="message message-error">' + data.message + '</div>')
                     }
                     $('html, body').animate({'scrollTop': curForm.offset().top - $('header').height()});
                     curForm.removeClass('loading');
