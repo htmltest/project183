@@ -165,4 +165,9 @@
         <path fill-rule="evenodd" clip-rule="evenodd" d="M-9.53674e-07 0.60012C-9.53674e-07 0.753712 0.0544424 0.907305 0.162774 1.0243L4.60716 5.82406C4.82438 6.05865 5.17548 6.05865 5.3927 5.82406L9.83709 1.0243C10.0543 0.78971 10.0543 0.410529 9.83709 0.175941C9.61987 -0.0586471 9.26876 -0.0586471 9.05154 0.175941L4.99993 4.55152L0.948319 0.175941C0.7311 -0.0586471 0.379993 -0.0586471 0.162774 0.175941C0.0544424 0.292935 -9.53674e-07 0.446528 -9.53674e-07 0.60012Z" />
     </symbol>
 
+    <symbol viewBox="0 0 24 24" id="programm-filter-param-remove">
+        <path d="M15 9L9 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M9 9L15 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+
 </svg>

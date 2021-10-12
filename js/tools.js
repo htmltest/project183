@@ -596,10 +596,15 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+	$('body').on('submit', '.video-ctrl form', function(e) {
+		filterSpeakers(true);
+		e.preventDefault();
+	});
+
     $('body').on('click', '.speakers-container .pager a', function(e) {
         $('.speakers-container .pager a.active').removeClass('active');
         $(this).addClass('active');
-        filterSpeakers();
+        filterSpeakers(false);
         e.preventDefault();
     });
 
@@ -611,12 +616,12 @@ $(document).ready(function() {
             $('.speakers-letters a.active').removeClass('active');
             curLink.addClass('active');
         }
-        filterSpeakers();
+        filterSpeakers(false);
         e.preventDefault();
     });
 
     $('body').on('change', '.speakers-filter-item input', function(e) {
-        filterSpeakers();
+        filterSpeakers(true);
         e.preventDefault();
     });
 
@@ -639,8 +644,8 @@ $(document).ready(function() {
     });
 
     $('.speakers-filter-reset a').click(function(e) {
-        $('.speakers-filter-item input').prop('checked', false);
-        filterSpeakers();
+        $('.speakers-filter-item input').prop('checked', true);
+        filterSpeakers(true);
         if ($('html').hasClass('speakers-filter-open')) {
             $('html').removeClass('speakers-filter-open');
             $('.wrapper').css('margin-top', 0);
@@ -649,40 +654,72 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+	$('body').on('focus', '.form-input input, .form-input textarea', function() {
+		$(this).parent().addClass('focus');
+	});
+
+	$('body').on('blur', '.form-input input, .form-input textarea', function() {
+		$(this).parent().removeClass('focus');
+		if ($(this).val() != '') {
+			$(this).parent().addClass('full');
+		} else {
+			$(this).parent().removeClass('full');
+		}
+	});
+
+	$('body').on('keyup', '.form-input input, .form-input textarea', function() {
+		$(this).parent().removeClass('focus');
+		if ($(this).val() != '') {
+			$(this).parent().addClass('full');
+		} else {
+			$(this).parent().removeClass('full');
+		}
+	});
+
+	$('body').on('click', '.form-input-clear', function(e) {
+		$(this).parent().find('input').val('').trigger('change').trigger('blur');
+		filterSpeakers(true);
+		e.preventDefault();
+	});
+
 });
 
-function filterSpeakers() {
-    $('.speakers-container').addClass('loading');
-    var curForm = $('.speakers-filter form');
-    var curData = curForm.serialize();
-    curData += '&page=' + $('.pager a.active').attr('data-value');
-    if ($('.speakers-letters a.active').length == 1) {
-        curData += '&letter=' + $('.speakers-letters a.active').html();
-    }
-    $.ajax({
-        type: 'POST',
-        url: curForm.attr('action'),
-        dataType: 'html',
-        data: curData,
-        cache: false
-    }).done(function(html) {
-        $('.speakers-container .speakers').html($(html).find('.speakers').html())
-        $('.speakers-container .pager').html($(html).find('.pager').html())
-        $('.speakers-container').removeClass('loading');
-        if ($(window).width() > 1199) {
-            $('html, body').animate({'scrollTop': $('.video-header').offset().top - 50});
-        } else {
-            $('html, body').animate({'scrollTop': 0});
-        }
+function filterSpeakers(noLetter) {
+	$('.speakers-container').addClass('loading');
+	var curForm = $('.speakers-filter form');
+	var curData = curForm.serialize();
+	if($('.pager a.active').attr('data-value') != undefined)
+		curData += '&PAGEN_1=' + $('.pager a.active').attr('data-value');
+	curData += '&search=' + $('.video-search-inner input[name=search]').val();
 
-        $('.speaker').each(function() {
-            var curItem = $(this);
-            curItem.find('.speaker-inner').append('<div class="speaker-detail"><div class="speaker-name">' + curItem.find('.speaker-name').html() + '</div><div class="speaker-text">' + curItem.find('.speaker-text').html() + '</div></div>');
-        });
-    });
+	if ($('.speakers-letters a.active').length == 1 && !noLetter) {
+		curData += '&letter=' + $('.speakers-letters a.active').html();
+	}
+
+	$.ajax({
+		type: 'POST',
+		url: curForm.attr('action'),
+		dataType: 'html',
+		data: curData,
+		cache: false
+	}).done(function(response) {
+		$('.speakers-container .speakers').html($(response).find('.speakers').html());
+		$('.speakers-container .pager').html( $(response).find('.pager').html() );
+		$('.speakers-container .speakers-letters').html( $(response).find('div.speakers-letters').html() );
+		$('.speakers-container').removeClass('loading');
+
+        $('html, body').animate({'scrollTop': 0});
+
+		$('.speaker').each(function() {
+			var curItem = $(this);
+			curItem.find('.speaker-inner').append('<div class="speaker-detail"><div class="speaker-name">' + curItem.find('.speaker-name').html() + '</div><div class="speaker-text">' + curItem.find('.speaker-text').html() + '</div></div>');
+		});
+	});
 }
 
 function initForm(curForm) {
+    if (curForm.hasClass('no-send-form')) return;
+
     curForm.find('input.phoneMask').mask('+ZZZZZZZZZZZZZZZZZZZZ', {
         translation: {
             'Z': {

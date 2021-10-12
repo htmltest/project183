@@ -137,9 +137,9 @@ label.error {display:block; font-size:12px; line-height:18px; color:#bd423a; mar
 @-webkit-keyframes autofill {to {color:#000; background:#fdfdfd}}
 .form-input input:-webkit-autofill {-webkit-animation-name:autofill; -webkit-animation-fill-mode:both}
 
-.form-input-clear {display:none; position:absolute; right:5px; top:50%; margin-top:-12px; width:24px; height:24px; border-radius:50%; background:#fff; border:1px solid #000}
+.form-input-clear {display:none; position:absolute; right:5px; top:50%; margin-top:-9px; width:18px; height:18px; border-radius:50%; background:#fff; border:1px solid #000}
 .form-input-clear:hover {background:#000}
-.form-input-clear svg {display:block; width:24px; height:24px; fill:none; stroke:#25282b; margin:-1px 0 0 -1px; transition:all 0.2s}
+.form-input-clear svg {display:block; width:18px; height:18px; fill:none; stroke:#25282b; margin:-1px 0 0 -1px; transition:all 0.2s}
 .form-input-clear:hover svg {stroke:#fff}
 .form-input.full .form-input-clear {display:block}
 
@@ -1543,6 +1543,7 @@ footer {margin:100px 0 0 0}
 .video-search-submit button {display:block; margin:0; padding:0; overflow:visible; outline:none; width:40px; height:50px; background:transparent; border:none; border-radius:0; position:relative; -webkit-appearance:none; cursor:pointer; box-sizing:border-box}
 .video-search-submit button svg {display:block; position:absolute; left:50%; top:50%; width:18px; height:18px; margin:-9px 0 0 -9px; fill:none; stroke:#000; transition:stroke 0.2s}
 .video-search-submit button:hover svg {stroke:#fec34f}
+.video-search-inner .form-input-clear {right:40px; z-index:1}
 
 @media (max-width:1199px) {
     .video-ctrl {float:left; width:100%; margin:20px 0 0 0; position:absolute; left:-99999px; top:-99999px}
@@ -1637,7 +1638,7 @@ footer {margin:100px 0 0 0}
 .speakers-filter-group-all em {font-style:normal}
 .speakers-filter-group-container.all .speakers-filter-group-all a span:nth-child(1) {display:none}
 .speakers-filter-group-container.all .speakers-filter-group-all a span:nth-child(2) {display:inline}
-.speakers-filter-reset {border-top:1px solid #efefef; text-align:left; padding:15px 0 0 0; font-size:14px; line-height:21px}
+.speakers-filter-reset {border-top:1px solid #efefef; text-align:center; padding:15px 0 0 0; font-size:14px; line-height:21px}
 .speakers-filter-reset a {text-decoration:none; color:#f59444}
 .speakers-filter-reset a:hover {text-decoration:underline}
 
@@ -1687,4 +1688,10 @@ footer {margin:100px 0 0 0}
 
 @media screen and (max-width:767px) {
     .speakers-letters {margin:30px 0}
+}
+
+.nothing {font-size:16px; line-height:24px; margin:20px 0 0 20px; letter-spacing:0}
+
+@media screen and (max-width:1199px) {
+    .nothing {font-size:20px; line-height:30px}
 }
