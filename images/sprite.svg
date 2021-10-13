@@ -152,12 +152,12 @@
     </symbol>
 
     <symbol viewBox="0 0 46 46" id="filter-open">
-        <rect width="46" height="46" fill="#F59444" />
+        <rect width="46" height="46" fill="#fab122" />
         <path d="M15.2546 16.61C17.2746 19.2 21.0046 24 21.0046 24V30C21.0046 30.55 21.4546 31 22.0046 31H24.0046C24.5546 31 25.0046 30.55 25.0046 30V24C25.0046 24 28.7246 19.2 30.7446 16.61C31.2546 15.95 30.7846 15 29.9546 15H16.0446C15.2146 15 14.7446 15.95 15.2546 16.61Z" fill="white" />
     </symbol>
 
     <symbol viewBox="0 0 46 46" id="filter-close">
-        <rect width="46" height="46" fill="#F59444" />
+        <rect width="46" height="46" fill="#fab122" />
         <path d="M25.0439 23.3534L32.2141 30.5236L31.0234 31.7143L23.8532 24.5441L23.4996 24.1905L23.1461 24.5441L15.9759 31.7143L14.7852 30.5236L21.9554 23.3534L22.309 22.9999L21.9554 22.6463L14.7852 15.4761L15.9759 14.2855L23.1461 21.4557L23.4996 21.8092L23.8532 21.4557L31.0234 14.2855L32.2141 15.4761L25.0439 22.6463L24.6903 22.9999L25.0439 23.3534Z" fill="white" stroke="white" />
     </symbol>
 
@@ -168,6 +168,10 @@
     <symbol viewBox="0 0 24 24" id="programm-filter-param-remove">
         <path d="M15 9L9 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         <path d="M9 9L15 15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+
+    <symbol viewBox="0 0 8 10" id="speaker-event-play">
+        <path d="M1 1L7 5L1 9V1Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </symbol>
 
 </svg>
