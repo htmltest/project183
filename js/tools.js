@@ -44,9 +44,15 @@ $(document).ready(function() {
         if ($('html').hasClass('mobile-menu-open')) {
             $('html').removeClass('mobile-menu-open');
             $('.wrapper').css('margin-top', 0);
+            $('meta[name="viewport"]').attr('content', 'width=device-width');
             $(window).scrollTop($('html').data('scrollTop'));
         } else {
             var curScroll = $(window).scrollTop();
+            var curWidth = $(window).width();
+            if (curWidth < 480) {
+                curWidth = 480;
+            }
+            $('meta[name="viewport"]').attr('content', 'width=' + curWidth);
             $('html').addClass('mobile-menu-open');
             $('html').data('scrollTop', curScroll);
             $('.wrapper').css('margin-top', -curScroll);
@@ -190,6 +196,15 @@ $(document).ready(function() {
         }
     }
 
+    $('body').on('click', '.window-photo-social-item-tg', function(e) {
+        var curTitle = encodeURIComponent($('title').html());
+        var curUrl = encodeURIComponent(window.location.href);
+
+        popupCenter('https://telegram.me/share/url?url=' + curUrl + '&text=' + curTitle, curTitle);
+
+        e.preventDefault();
+    });
+
     $('body').on('click', '.window-photo-social-item-fb', function(e) {
         var curTitle = encodeURIComponent($('title').html());
         var curUrl = encodeURIComponent(window.location.href);
@@ -250,6 +265,7 @@ $(document).ready(function() {
         windowHTML +=           '<div class="window-photo-social">';
         windowHTML +=               '<div class="window-photo-social-icon"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share"></use></svg></div>';
         windowHTML +=               '<div class="window-photo-social-window">';
+        windowHTML +=                   '<a href="#" class="window-photo-social-item window-photo-social-item-tg"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-tg"></use></svg></a>';
         windowHTML +=                   '<a href="#" class="window-photo-social-item window-photo-social-item-link"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-link"></use></svg></a>';
         windowHTML +=                   '<a href="#" class="window-photo-social-item window-photo-social-item-fb"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-fb"></use></svg></a>';
         windowHTML +=                   '<a href="#" class="window-photo-social-item window-photo-social-item-vk"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-vk"></use></svg></a>';
@@ -369,6 +385,15 @@ $(document).ready(function() {
         }
     });
 
+    $('body').on('click', '.window-video-social-item-tg', function(e) {
+        var curTitle = encodeURIComponent($('title').html());
+        var curUrl = encodeURIComponent(window.location.href);
+
+        popupCenter('https://telegram.me/share/url?url=' + curUrl + '&text=' + curTitle, curTitle);
+
+        e.preventDefault();
+    });
+
     $('body').on('click', '.window-video-social-item-fb', function(e) {
         var curTitle = encodeURIComponent($('title').html());
         var curUrl = encodeURIComponent(window.location.href);
@@ -417,6 +442,7 @@ $(document).ready(function() {
         windowHTML +=           '<div class="window-video-social">';
         windowHTML +=               '<div class="window-video-social-icon"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share"></use></svg></div>';
         windowHTML +=               '<div class="window-video-social-window">';
+        windowHTML +=                   '<a href="#" class="window-video-social-item window-video-social-item-tg"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-tg"></use></svg></a>';
         windowHTML +=                   '<a href="#" class="window-video-social-item window-video-social-item-link"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-link"></use></svg></a>';
         windowHTML +=                   '<a href="#" class="window-video-social-item window-video-social-item-fb"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-fb"></use></svg></a>';
         windowHTML +=                   '<a href="#" class="window-video-social-item window-video-social-item-vk"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#window-photo-share-vk"></use></svg></a>';
@@ -649,6 +675,7 @@ $(document).ready(function() {
         if ($('html').hasClass('speakers-filter-open')) {
             $('html').removeClass('speakers-filter-open');
             $('.wrapper').css('margin-top', 0);
+            $('meta[name="viewport"]').attr('content', 'width=device-width');
             $(window).scrollTop($('html').data('scrollTop'));
         }
         e.preventDefault();
@@ -682,6 +709,88 @@ $(document).ready(function() {
 		e.preventDefault();
 	});
 
+    $('.speakers-filter-btn').click(function(e) {
+        if (!$('html').hasClass('speakers-filter-open')) {
+            var curScroll = $(window).scrollTop();
+            var curWidth = $(window).width();
+            if (curWidth < 480) {
+                curWidth = 480;
+            }
+            $('meta[name="viewport"]').attr('content', 'width=' + curWidth);
+            $('html').addClass('speakers-filter-open');
+            $('html').data('scrollTop', curScroll);
+            $('.wrapper').css('margin-top', -curScroll);
+        }
+        e.preventDefault();
+    });
+
+    $('.speakers-filter-close').click(function(e) {
+        if ($('html').hasClass('speakers-filter-open')) {
+            $('html').removeClass('speakers-filter-open');
+            $('.wrapper').css('margin-top', 0);
+            $('meta[name="viewport"]').attr('content', 'width=device-width');
+            $(window).scrollTop($('html').data('scrollTop'));
+        }
+        e.preventDefault();
+    });
+
+    $('.speakers-filter-apply').click(function(e) {
+        if ($('html').hasClass('speakers-filter-open')) {
+            $('html').removeClass('speakers-filter-open');
+            $('.wrapper').css('margin-top', 0);
+            $('meta[name="viewport"]').attr('content', 'width=device-width');
+            $(window).scrollTop($('html').data('scrollTop'));
+        }
+        e.preventDefault();
+    });
+
+    $('.speakers-filter-reset a').click(function(e) {
+        $('.speakers-filter-item input').prop('checked', false);
+        filterSpeakers();
+        if ($('html').hasClass('speakers-filter-open')) {
+            $('html').removeClass('speakers-filter-open');
+            $('.wrapper').css('margin-top', 0);
+            $('meta[name="viewport"]').attr('content', 'width=device-width');
+            $(window).scrollTop($('html').data('scrollTop'));
+        }
+        e.preventDefault();
+    });
+
+    $('.speakers-filter-group-reset').click(function(e) {
+        var curGroup = $(this).parents().filter('.speakers-filter-group');
+        curGroup.find('.speakers-filter-item input').prop('checked', false);
+        filterSpeakers();
+        e.preventDefault();
+    });
+
+    $('.speakers-filter-group-close').click(function(e) {
+        var curGroup = $(this).parents().filter('.speakers-filter-group');
+        curGroup.removeClass('open-mobile');
+        e.preventDefault();
+    });
+
+    $('.speakers-filter-group-apply a').click(function(e) {
+        var curGroup = $(this).parents().filter('.speakers-filter-group');
+        curGroup.removeClass('open-mobile');
+        e.preventDefault();
+    });
+
+    updateFilterSpeakers();
+
+    $('.speakers-filter-group-params-remove').click(function(e) {
+        $(this).parents().filter('.speakers-filter-group').find('.speakers-filter-group-reset').trigger('click');
+        e.preventDefault();
+    });
+
+    $('body').on('click', '.speakers-filter-group-params-item a', function(e) {
+        var curItem = $(this).parent();
+        var curID = curItem.attr('data-id');
+        var curBlock = curItem.parents().filter('.speakers-filter-group');
+        curBlock.find('.speakers-filter-item input').eq(curID).prop('checked', false);
+        filterSpeakers();
+        e.preventDefault();
+    });
+
 });
 
 function filterSpeakers(noLetter) {
@@ -695,6 +804,8 @@ function filterSpeakers(noLetter) {
 	if ($('.speakers-letters a.active').length == 1 && !noLetter) {
 		curData += '&letter=' + $('.speakers-letters a.active').html();
 	}
+
+    updateFilterSpeakers();
 
 	$.ajax({
 		type: 'POST',
@@ -715,6 +826,33 @@ function filterSpeakers(noLetter) {
 			curItem.find('.speaker-inner').append('<div class="speaker-detail"><div class="speaker-name">' + curItem.find('.speaker-name').html() + '</div><div class="speaker-text">' + curItem.find('.speaker-text').html() + '</div></div>');
 		});
 	});
+}
+
+function updateFilterSpeakers() {
+    var countParams = 0;
+
+    $('.speakers-filter-group').each(function() {
+        var curGroup = $(this);
+        var paramsHTMLmobile = '';
+        curGroup.find('.speakers-filter-item input:checked').each(function() {
+            var curInput = $(this);
+            var curIndex = curGroup.find('.speakers-filter-item').index(curInput.parents().filter('.speakers-filter-item'));
+            paramsHTMLmobile += '<div class="speakers-filter-group-params-item" data-id="' + curIndex + '">' + curInput.parent().find('span').html() + '<a href="#"><svg><use xlink:href="' + pathTemplate + 'images/sprite.svg#speakers-filter-group-params-item-remove"></use></svg></a></div>';
+            countParams++;
+        });
+        curGroup.find('.speakers-filter-group-params').html(paramsHTMLmobile);
+        if (paramsHTMLmobile != '') {
+            curGroup.find('.speakers-filter-group-params').addClass('visible');
+        } else {
+            curGroup.find('.speakers-filter-group-params').removeClass('visible');
+        }
+    });
+
+    if (countParams > 0) {
+        $('.speakers-filter-btn span').html(countParams).addClass('visible');
+    } else {
+        $('.speakers-filter-btn span').html('').removeClass('visible');
+    }
 }
 
 function initForm(curForm) {
@@ -835,6 +973,10 @@ $(window).on('load resize scroll', function() {
 function windowOpen(linkWindow, dataWindow) {
     if ($('.window').length == 0) {
         var curPadding = $('.wrapper').width();
+        var curWidth = $(window).width();
+        if (curWidth < 480) {
+            curWidth = 480;
+        }
         var curScroll = $(window).scrollTop();
         $('html').addClass('window-open');
         curPadding = $('.wrapper').width() - curPadding;
@@ -844,6 +986,7 @@ function windowOpen(linkWindow, dataWindow) {
 
         $('.wrapper').css({'top': -curScroll});
         $('.wrapper').data('curScroll', curScroll);
+        $('meta[name="viewport"]').attr('content', 'width=' + curWidth);
     } else {
         $('.window').append('<div class="window-loading"></div>')
         $('.window-container').addClass('window-container-preload');
@@ -885,6 +1028,7 @@ function windowClose() {
             $('html').removeClass('window-open');
             $('body').css({'margin-right': 0});
             $('.wrapper').css({'top': 0});
+            $('meta[name="viewport"]').attr('content', 'width=device-width');
             $(window).scrollTop($('.wrapper').data('curScroll'));
         } else {
             if (confirm('Закрыть форму?')) {
