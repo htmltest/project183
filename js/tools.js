@@ -744,18 +744,6 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
-    $('.speakers-filter-reset a').click(function(e) {
-        $('.speakers-filter-item input').prop('checked', false);
-        filterSpeakers();
-        if ($('html').hasClass('speakers-filter-open')) {
-            $('html').removeClass('speakers-filter-open');
-            $('.wrapper').css('margin-top', 0);
-            $('meta[name="viewport"]').attr('content', 'width=device-width');
-            $(window).scrollTop($('html').data('scrollTop'));
-        }
-        e.preventDefault();
-    });
-
     $('.speakers-filter-group-reset').click(function(e) {
         var curGroup = $(this).parents().filter('.speakers-filter-group');
         curGroup.find('.speakers-filter-item input').prop('checked', false);
