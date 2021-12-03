@@ -573,7 +573,6 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 .program-header {background:#fffaf3; padding:80px 0 54px 0}
 .program-header h1 {margin:0}
 .program-days-menu {margin:60px -20px 0 -20px}
-.program-days-menu-current {display:none}
 .program-days-menu-inner {display:table; width:100%; border-collapse:separate; border-spacing:20px 0}
 .program-days-menu-item {display:table-cell; vertical-align:top; text-align:center; color:#fff; padding:34px 20px; width:25%; text-decoration:none; transition:transform 0.2s, box-shadow 0.2s, opacity 0.2s; opacity:0.4; position:relative}
 .program-days-menu-item:hover {color:#fff; text-decoration:none; transform:translateY(-5px); box-shadow:0 0 5px rgba(0, 0, 0, 0.4)}
@@ -581,28 +580,18 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 .program-days-menu-item.active::before {content:""; display:block; width:36px; height:36px; position:absolute; left:50%; margin-left:-18px; bottom:-18px; transform:rotate(45deg); background:inherit}
 
 @media screen and (max-width:1199px) {
-    .program-header {padding:70px 0 49px 0}
-    .program-header h1 {text-align:center; text-transform:uppercase}
-    .program-days-menu {margin:30px 0 0 0; position:relative}
-    .program-days-menu.open {z-index:20}
-    .program-days-menu-current {display:block; position:relative; border:2px solid #d9d9d9; background:#fff; cursor:pointer; padding:0 0 0 14px; height:59px; font-size:18px; font-weight:500; line-height:55px; text-transform:uppercase; letter-spacing:0.03em; color:#000}
-    .program-days-menu-current svg {display:block; width:24px; height:14px; position:absolute; right:24px; top:50%; margin-top:-7px; fill:none; stroke:#5e5e5e}
-    .program-days-menu.open .program-days-menu-current svg {transform:rotate(-180deg)}
-    .program-days-menu-inner {display:none; width:auto; border-collapse:collapse; border-spacing:0; position:absolute; left:0; top:100%; right:0; margin-top:-2px; border:2px solid #d9d9d9; background:#fff}
-    .program-days-menu.open .program-days-menu-inner {display:block}
-    .program-days-menu-item {display:block; padding:0; width:auto; opacity:1; color:#000; background:transparent !important; border-top:1px solid #d9d9d9; text-align:left}
-    .program-days-menu-item:first-child {border-top:none}
-    .program-days-menu-item:hover {color:#000; transform:none; box-shadow:none}
-    .program-days-menu-item.active::before {display:none}
-    .program-days-menu-item .fest-tracks-item-date {display:none}
-    .program-days-menu-item .fest-tracks-item-title {margin:0; padding:0 0 0 14px; height:58px; font-size:18px; font-weight:500; line-height:58px; text-transform:uppercase; letter-spacing:0.03em}
-    .program-days-menu-item.active .fest-tracks-item-title {background:#d9d9d9}
-    .program-days-menu-item .fest-tracks-item-text {display:none}
+    .program-header {background:none; padding:60px 0 40px 0}
+    .program-days-menu {display:none}
 }
 
 .program-days {margin:60px 0 0 0; position:relative}
 .program-day {position:absolute; left:-9999px; top:-9999px; width:100%; opacity:0; transition:opacity 0.2s}
 .program-day.active {position:relative; left:auto; top:auto; opacity:1}
+
+@media screen and (max-width:1199px) {
+    .program-days {margin:0; border-top:1px solid #e1e1e1}
+    .program-day {position:relative; left:auto; top:auto; opacity:1}
+}
 
 .program-day-header::after {content:""; display:block; clear:both}
 .program-day-title {float:left; font-weight:bold; font-size:36px; line-height:36px; color:#000}
@@ -611,8 +600,9 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 .program-day-group {margin:52px 0 0 0}
 .program-day-group:first-child {margin:0}
 .program-day-group-title a {display:block; position:relative; background:#5087c7; color:#fff; font-weight:bold; font-size:22px; line-height:29px; padding:15px 30px; text-decoration:none}
-.program-day-group-title a svg {display:block; width:24px; height:24px; position:absolute; right:14px; top:50%; margin-top:-12px; fill:#fff; transition:transform 0.2s}
-.program-day-group.open .program-day-group-title a svg {transform:rotate(-180deg)}
+.program-day-group-title a > svg {display:block; width:24px; height:24px; position:absolute; right:14px; top:50%; margin-top:-12px; fill:#fff; transition:transform 0.2s}
+.program-day-group.open .program-day-group-title a > svg {transform:rotate(-180deg)}
+.program-day-group-title-detail {display:none}
 .program-day-group-list {display:block; font-size:0; line-height:0; letter-spacing:-1px; margin:20px -10px 0 -10px}
 .program-day-item {display:inline-block; vertical-align:top; width:33.33%; padding:60px 10px 0 10px}
 .program-day-item:nth-child(1),
@@ -627,22 +617,36 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 .program-day-item-time {margin:20px 0 0 0; font-size:14px; line-height:17px; letter-spacing:0}
 .program-day-item-place {margin:10px 0 0 0; font-size:16px; line-height:21px; letter-spacing:0}
 .program-day-item-title {margin:8px 0 0 0; font-size:18px; line-height:23px; letter-spacing:0; font-weight:500}
+.program-day-group-list-hide-mobile {display:none}
 
 @media screen and (max-width:1199px) {
-    .program-day-title {float:none; font-size:30px; line-height:39px}
-    .program-day-notice {float:none; margin:10px 0 0 0; font-size:20px; line-height:30px; color:#504f4f}
-    .program-day-notice strong {color:#000; font-weight:normal}
-    .program-day-content {margin:30px 0 0 0}
-    .program-day-group {margin:50px 0 0 0}
-    .program-day-group:first-child {margin:0}
-    .program-day-group-title a {margin:0 -20px; padding:15px 20px}
-    .program-day-group-title a svg {right:25px}
-    .program-day-group-list {margin:30px 0 0 0}
+    .program-day-header {display:none}
+    .program-day-content {margin:0}
+    .program-day-group {margin:0; border-bottom:1px solid #e1e1e1}
+    .program-day-group.open-mobile {margin:0 -20px; padding:0 20px; background:#fffaf3}
+    .program-day-group-title a {margin:0; padding:0; background:none !important; display:table; width:100%; color:#000}
+    .program-day-group-title a > svg {display:none}
+    .program-day-group-title-date {display:table-cell; vertical-align:top; white-space:nowrap; padding:64px 25px 30px 0; font-size:20px; line-height:26px; font-weight:900}
+    .program-day-group-title-detail {display:table-cell; vertical-align:top; padding:64px 0 30px 0; width:100%}
+    .program-day-group-title-detail-online {margin:-24px 0 0 0; font-size:16px; line-height:24px; height:24px; font-weight:normal; color:#a7a4a1}
+    .program-day-group.open-mobile .program-day-group-title-detail-online {color:#000}
+    .program-day-group-title-detail-type {font-size:22px; line-height:22px; font-weight:bold; margin:2px 0 0 0}
+    .program-day-group-title-detail-type span {border-bottom:1px dashed #000}
+    .program-day-group-title-detail-type svg {display:inline-block; vertical-align:middle; width:18px; height:10px; margin:0 0 0 10px; transform:none}
+    .program-day-group.open-mobile .program-day-group-title-detail-type svg {transform:rotate(-180deg)}
+    .program-day-group-title-detail-descr {margin:13px 0 0 0; font-size:18px; line-height:23px; font-weight:normal}
+    .program-day-group-list {display:none !important; margin:10px 0 0 0}
+    .program-day-group.open-mobile .program-day-group-list {display:block !important}
     .program-day-item {display:block; width:auto; padding:0; margin:40px 0 0 0}
     .program-day-item:first-child {margin-top:0}
     .program-day-item-time {margin:18px 0 0 0; font-size:18px; line-height:22px}
     .program-day-item-place {font-size:18px; line-height:23px}
     .program-day-item-title {margin:10px 0 0 0; font-size:20px; line-height:26px}
+    .program-day-group.open-mobile .program-day-group-list-hide-mobile {display:block}
+    .program-day-group-list-hide-mobile {margin:0 -20px; font-size:18px; line-height:18px; font-weight:500}
+    .program-day-group-list-hide-mobile a {color:#000; text-decoration:none; display:block; padding:40px 20px}
+    .program-day-group-list-hide-mobile a span {border-bottom:1px dashed #000}
+    .program-day-group-list-hide-mobile a svg {display:inline-block; vertical-align:middle; margin:-2px 0 0 10px; fill:#000; width:15px; height:9px}
 }
 
 .back-link {font-size:16px; line-height:60px}
@@ -668,7 +672,7 @@ a.partners-group-global-logo-inner:hover {top:-5px}
 .program-card-container {float:left; width:calc(100% - 492px)}
 .program-card-info::after {content:""; display:block; clear:both}
 .program-card-info-inner {float:left; font-size:18px; line-height:39px; color:#000}
-.program-card-info-online {float:left; padding:0 10px; height:39px; background:#f1f0f0}
+.program-card-info-online {float:left; padding:0 10px; height:39px; background:rgba(254, 195, 79, 0.15)}
 .program-card-info-city {float:right; margin:0 0 0 22px}
 .program-card-info-date {float:left; margin:0 0 0 22px}
 .program-card-info-date span {color:#676767; margin-left:5px}
@@ -1083,30 +1087,24 @@ footer {margin:100px 0 0 0}
 .archive-list-item {display:block; margin:30px 0 0 0; text-decoration:none; height:345px; position:relative; overflow:hidden}
 .archive-list-item-bg {position:absolute; left:0; top:0; right:0; bottom:0; background:no-repeat center; background-size:cover; transition:transform 0.5s}
 .archive-list-item:hover .archive-list-item-bg {transform:scale(1.086)}
-.archive-list-item-container {position:absolute; left:60px; top:50%; right:60px; transform:translateY(-50%)}
-.archive-list-item-content {float:left; background:rgba(250, 177, 34, 0.9); padding:29px 40px; color:#fff; max-width:65%}
-.archive-list-item-title {font-weight:500; font-size:30px; line-height:39px}
-.archive-list-item-name {margin:10px 0 0 0; font-weight:bold; font-size:30px; line-height:42px; text-transform:uppercase}
-.archive-list-item-date {margin:10px 0 0 0; font-weight:500; font-size:22px; line-height:29px}
+.archive-list-item-container {position:absolute; left:97px; top:50%; right:97px; transform:translateY(-50%)}
+.archive-list-item-content {float:left; color:#fff; max-width:65%}
+.archive-list-item-title {font-weight:500; font-size:24px; line-height:31px}
+.archive-list-item-name {margin:35px 0 0 0; font-weight:bold; font-size:30px; line-height:42px; text-transform:uppercase}
+.archive-list-item-date {margin:30px 0 0 0; font-weight:500; font-size:22px; line-height:29px}
+.archive-list-item-content span {background:rgba(250, 177, 34, 0.9); -webkit-box-decoration-break:clone; box-decoration-break:clone; display:inline; padding:4px 20px; margin:0 0 0 -20px}
+.archive-list-item-name span {padding-top:9px}
 
 @media screen and (max-width:1199px) {
-    .archive-list {margin:36px 0 0 0}
-    .archive-list-item {margin:20px 0 0 0; height:352px}
-    .archive-list-item-container {left:43px; right:43px}
-    .archive-list-item-content {padding:43px 36px; max-width:100%}
+    .archive-list {margin:40px 0 0 0}
+    .archive-list-item {margin:40px 0 0 0; height:260px}
+    .archive-list-item-container {left:25px; right:25px}
+    .archive-list-item-content {max-width:100%}
     .archive-list-item-title {font-size:20px; line-height:26px}
-    .archive-list-item-name {font-size:29px; line-height:39px}
-    .archive-list-item-date {font-size:20px; line-height:26px}
-}
-
-@media screen and (max-width:767px) {
-    .archive-list {margin:60px -20px 0 -20px}
-    .archive-list-item {height:345px}
-    .archive-list-item-container {left:0; right:0}
-    .archive-list-item-content {float:none; padding:20px}
-    .archive-list-item-title {font-size:18px; line-height:23px}
-    .archive-list-item-name {margin:4px 0 0 0; font-size:24px; line-height:34px}
-    .archive-list-item-date {margin:4px 0 0 0; font-size:18px; line-height:23px}
+    .archive-list-item-name {margin:20px 0 0 0; font-size:24px; line-height:34px}
+    .archive-list-item-date {margin:20px 0 0 0; font-size:20px; line-height:26px}
+    .archive-list-item-content span {padding:3px 8px; margin:0 0 0 -8px}
+    .archive-list-item-name span {padding-top:7px}
 }
 
 .archive-card-header {margin:60px 0 68px 0; height:400px; position:relative}

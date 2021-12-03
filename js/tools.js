@@ -114,35 +114,38 @@ $(document).ready(function() {
             var curIndex = $('.program-days-menu-item').index(curItem);
             $('.program-day.active').removeClass('active');
             $('.program-day').eq(curIndex).addClass('active');
-
-            $('.program-days-menu-current span').html(curItem.find('.fest-tracks-item-title').html());
-            $('.program-days-menu').removeClass('open')
         }
         e.preventDefault();
     });
 
     $('.program-day-group-title a').click(function(e) {
         var curGroup = $(this).parents().filter('.program-day-group');
-        curGroup.toggleClass('open');
-        curGroup.find('.program-day-group-list').slideToggle();
+        if (curGroup.hasClass('open-mobile')) {
+            curGroup.removeClass('open-mobile');
+        } else {
+            $('.program-day-group.open-mobile').removeClass('open-mobile');
+            curGroup.addClass('open-mobile');
+            if ($(window).width() < 1200) {
+                $('html, body').animate({'scrollTop': curGroup.offset().top - $('header').height()});
+            }
+        }
+        if ($(window).width() > 1199) {
+            curGroup.toggleClass('open');
+            curGroup.find('.program-day-group-list').slideToggle();
+        }
+        e.preventDefault();
+    });
+
+    $('.program-day-group-list-hide-mobile a').click(function(e) {
+        var curGroup = $(this).parents().filter('.program-day-group');
+        curGroup.removeClass('open-mobile');
+        if ($(window).width() < 1200) {
+            $('html, body').animate({'scrollTop': curGroup.offset().top - $('header').height()});
+        }
         e.preventDefault();
     });
 
     $('.program-day-group:not(.open)').find('.program-day-group-list').hide();
-
-    $('.program-days-menu-current').click(function() {
-        if ($('.program-days-menu').hasClass('open')) {
-            $('.program-days-menu').removeClass('open');
-        } else {
-            $('.program-days-menu').addClass('open');
-        }
-    });
-
-    $(document).click(function(e) {
-        if ($(e.target).parents().filter('.program-days-menu').length == 0) {
-            $('.program-days-menu').removeClass('open');
-        }
-    });
 
     $('body').on('click', '.speaker-card-descr-more a', function(e) {
         $(this).parent().prev().toggleClass('open');
