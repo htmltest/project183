@@ -673,7 +673,7 @@ $(document).ready(function() {
     });
 
     $('.speakers-filter-reset a').click(function(e) {
-        $('.speakers-filter-item input').prop('checked', true);
+        $('.speakers-filter-item input').prop('checked', false);
         filterSpeakers(true);
         if ($('html').hasClass('speakers-filter-open')) {
             $('html').removeClass('speakers-filter-open');
